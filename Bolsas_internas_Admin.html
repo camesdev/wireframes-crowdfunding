@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsas Internas - Remitt Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación Admin -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+                <span class="ml-2 text-sm font-bold text-gray-700">Admin Panel</span>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_Proyectos_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_de_Usuarios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion_fees_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Configuración de Fees
+                    </a>
+                </li>
+                <li>
+                    <a href="Bolsas_internas_Admin.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Bolsas Internas
+                    </a>
+                </li>
+                <li>
+                    <a href="Entrega_de_Beneficios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Entrega de Beneficios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Admin Info -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-gray-100 p-3 rounded-lg text-center">
+                <p class="text-xs text-gray-500">Admin:</p>
+                <p class="text-sm font-medium">admin@remitt.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Admin -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt Admin</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden lg:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">3</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Header de Bolsas Internas -->
+            <section class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="text-center">
+                    <!-- Imagen/Icono -->
+                    <div class="mx-auto mb-6 w-20 h-20 bg-gray-300 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 bg-black rounded-md flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">$</span>
+                        </div>
+                    </div>
+                    
+                    <h1 class="text-3xl font-bold text-black mb-4">Bolsas Internas</h1>
+                    <p class="text-gray-500 text-lg max-w-2xl mx-auto">Monitorea y gestiona los pools internos de comisiones y fees del ecosistema</p>
+                </div>
+            </section>
+
+            <!-- Resumen General -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-6">Resumen General</h2>
+                
+                <!-- Métricas Principales -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-lg text-center">
+                        <h3 class="text-sm font-medium text-gray-500 mb-2">Total USDT</h3>
+                        <p class="text-2xl font-bold text-black">42,007.50</p>
+                        <p class="text-xs text-gray-500">USDT</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg text-center">
+                        <h3 class="text-sm font-medium text-gray-500 mb-2">Total USDC</h3>
+                        <p class="text-2xl font-bold text-black">28,765.27</p>
+                        <p class="text-xs text-gray-500">USDC</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg text-center">
+                        <h3 class="text-sm font-medium text-gray-500 mb-2">Ingresos Hoy</h3>
+                        <p class="text-2xl font-bold text-black">1,156.15</p>
+                        <p class="text-xs text-gray-500">USD Total</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bolsas del Sistema -->
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6">Bolsas del Sistema</h2>
+                
+                <!-- Bolsa Comisión de Compra -->
+                <div class="border border-gray-300 rounded-lg p-6 mb-6">
+                    <!-- Header de la bolsa -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-1">Comisiones de Compra</h3>
+                            <p class="text-sm text-gray-500">Comisiones retenidas por la empresa</p>
+                        </div>
+                        <div class="flex space-x-6">
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-xl font-bold text-black">18,456.30</p>
+                            </div>
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-xl font-bold text-black">12,340.85</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comisiones Pendientes -->
+                    <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-sm font-medium text-gray-700">Comisiones Pendientes</h4>
+                            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Por procesar</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-lg font-bold text-gray-700">3,247.85</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-lg font-bold text-gray-700">2,158.92</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Acciones de la bolsa -->
+                    <div class="flex justify-end space-x-3">
+                        <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
+                            Ver Historial
+                        </button>
+                        <button onclick="openModal('USDT', 'Comisiones de Compra', '18,456.30')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDT
+                        </button>
+                        <button onclick="openModal('USDC', 'Comisiones de Compra', '12,340.85')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDC
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bolsa P2P -->
+                <div class="border border-gray-300 rounded-lg p-6 mb-6">
+                    <!-- Header de la bolsa -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-1">Comisiones P2P</h3>
+                            <p class="text-sm text-gray-500">Comisiones de transacciones P2P</p>
+                        </div>
+                        <div class="flex space-x-6">
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-xl font-bold text-black">12,340.85</p>
+                            </div>
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-xl font-bold text-black">8,925.40</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Acciones de la bolsa -->
+                    <div class="flex justify-end space-x-3">
+                        <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
+                            Ver Historial
+                        </button>
+                        <button onclick="openModal('USDT', 'Comisiones P2P', '12,340.85')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDT
+                        </button>
+                        <button onclick="openModal('USDC', 'Comisiones P2P', '8,925.40')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDC
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bolsa Red Afiliados -->
+                <div class="border border-gray-300 rounded-lg p-6 mb-6">
+                    <!-- Header de la bolsa -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-1">Comisiones Red Remitt</h3>
+                            <p class="text-sm text-gray-500">Fondos para distribución a afiliados</p>
+                        </div>
+                        <div class="flex space-x-6">
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-xl font-bold text-black">8,925.40</p>
+                            </div>
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-xl font-bold text-black">5,642.30</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comisiones Pendientes -->
+                    <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="text-sm font-medium text-gray-700">Comisiones Pendientes</h4>
+                            <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Por procesar</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-lg font-bold text-gray-700">1,892.75</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-lg font-bold text-gray-700">1,245.63</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Acciones de la bolsa -->
+                    <div class="flex justify-end space-x-3">
+                        <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
+                            Ver Historial
+                        </button>
+                        <button onclick="openModal('USDT', 'Comisiones Red Remitt', '8,925.40')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDT
+                        </button>
+                        <button onclick="openModal('USDC', 'Comisiones Red Remitt', '5,642.30')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDC
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bolsa Gas Fees -->
+                <div class="border border-gray-300 rounded-lg p-6 mb-6">
+                    <!-- Header de la bolsa -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-1">Gas Fees</h3>
+                            <p class="text-sm text-gray-500">Fees para transacciones BNB</p>
+                        </div>
+                        <div class="flex space-x-6">
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-xl font-bold text-black">2,284.95</p>
+                            </div>
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-xl font-bold text-black">1,856.72</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Acciones de la bolsa -->
+                    <div class="flex justify-end space-x-3">
+                        <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
+                            Ver Historial
+                        </button>
+                        <button onclick="openModal('USDT', 'Gas Fees', '2,284.95')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDT
+                        </button>
+                        <button onclick="openModal('USDC', 'Gas Fees', '1,856.72')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDC
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bolsa Comisiones Beneficios -->
+                <div class="border border-gray-300 rounded-lg p-6">
+                    <!-- Header de la bolsa -->
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-black mb-1">Comisiones de Beneficios</h3>
+                            <p class="text-sm text-gray-500">Comisiones sobre beneficios pagados</p>
+                        </div>
+                        <div class="flex space-x-6">
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDT</p>
+                                <p class="text-xl font-bold text-black">2,284.95</p>
+                            </div>
+                            <div class="text-center bg-gray-100 px-4 py-3 rounded-lg">
+                                <p class="text-xs text-gray-500 uppercase mb-1">USDC</p>
+                                <p class="text-xl font-bold text-black">1,856.72</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Acciones de la bolsa -->
+                    <div class="flex justify-end space-x-3">
+                        <button class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
+                            Ver Historial
+                        </button>
+                        <button onclick="openModal('USDT', 'Comisiones de Beneficios', '2,284.95')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDT
+                        </button>
+                        <button onclick="openModal('USDC', 'Comisiones de Beneficios', '1,856.72')" class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                            Retirar USDC
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- Modal de Retiro (Oculto por defecto) -->
+        <div id="withdrawModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+                <!-- Header del Modal -->
+                <div class="p-6 border-b border-gray-300 flex justify-between items-center">
+                    <div>
+                        <h3 id="modalTitle" class="text-xl font-bold text-black">Retirar USDT</h3>
+                        <p id="modalSubtitle" class="text-sm text-gray-500 mt-1">Comisiones de Compra</p>
+                    </div>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <span class="text-2xl">×</span>
+                    </button>
+                </div>
+                
+                <!-- Contenido del Modal -->
+                <div class="p-6">
+                    <!-- Saldo disponible -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Saldo Disponible</label>
+                        <div class="bg-gray-100 p-4 rounded-lg text-center">
+                            <p id="modalAvailable" class="text-xl font-bold text-black">18,456.30 USDT</p>
+                            <p class="text-xs text-gray-500">Disponible en esta bolsa</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campo de Monto a Retirar -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Monto a Retirar</label>
+                        <div class="flex space-x-2">
+                            <input 
+                                type="number" 
+                                id="withdrawAmount"
+                                placeholder="0.00" 
+                                step="0.01"
+                                min="0"
+                                class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-sm"
+                            >
+                            <button 
+                                onclick="setMaxAmount()" 
+                                class="bg-gray-100 text-gray-700 px-4 py-3 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors whitespace-nowrap"
+                            >
+                                Total
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Ingresa el monto que deseas retirar</p>
+                    </div>
+                    
+                    <!-- Campo de Wallet -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Dirección de Wallet BEP-20</label>
+                        <input 
+                            type="text" 
+                            id="walletAddress"
+                            placeholder="0x..." 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-black text-sm"
+                        >
+                    </div>
+                    
+                    <!-- Aviso Importante -->
+                    <div class="bg-gray-100 border-l-4 border-black p-4 mb-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="w-5 h-5 bg-black rounded-full flex items-center justify-center">
+                                    <span class="text-white text-xs font-bold">!</span>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-sm font-bold text-black mb-2">Importante - Wallet BEP-20</h4>
+                                <p class="text-sm text-gray-700">
+                                    <strong>Debes usar una wallet BEP-20 compatible.</strong> 
+                                    Ingresar una wallet incorrecta representa la pérdida de sus fondos. 
+                                    Verifica que la dirección sea correcta antes de confirmar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Información Adicional -->
+                    <div class="text-xs text-gray-500 mb-6">
+                        <p>• La transacción se procesará en la red Binance Smart Chain (BEP-20)</p>
+                        <p id="tokenInfo">• Verifica que tu wallet soporte tokens USDT en BSC</p>
+                        <p>• El proceso puede tomar entre 1-3 minutos</p>
+                    </div>
+                </div>
+                
+                <!-- Footer del Modal -->
+                <div class="p-6 border-t border-gray-300 flex justify-end space-x-3">
+                    <button onclick="closeModal()" class="bg-gray-100 text-gray-700 px-6 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                        Cancelar
+                    </button>
+                    <button onclick="confirmWithdraw()" class="bg-black text-white px-6 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                        Confirmar Retiro
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Admin -->
+        <footer class="bg-white border-t border-gray-300 py-6 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">
+                    © 2025 Remitt Admin Panel. Gestión de bolsas internas del ecosistema.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Variable global para almacenar el monto disponible
+        let availableAmount = 0;
+        let currentCurrency = '';
+
+        // Funciones del Modal de Retiro
+        window.openModal = function(currency, bagName, amount) {
+            // Guardar información para validaciones
+            availableAmount = parseFloat(amount.replace(',', ''));
+            currentCurrency = currency;
+            
+            // Actualizar contenido del modal
+            document.getElementById('modalTitle').textContent = 'Retirar ' + currency;
+            document.getElementById('modalSubtitle').textContent = bagName;
+            document.getElementById('modalAvailable').textContent = amount + ' ' + currency;
+            document.getElementById('tokenInfo').textContent = '• Verifica que tu wallet soporte tokens ' + currency + ' en BSC';
+            
+            // Limpiar los campos
+            document.getElementById('walletAddress').value = '';
+            document.getElementById('withdrawAmount').value = '';
+            
+            // Actualizar el placeholder del monto
+            document.getElementById('withdrawAmount').placeholder = '0.00 ' + currency;
+            
+            // Mostrar modal
+            document.getElementById('withdrawModal').classList.remove('hidden');
+        };
+
+        window.setMaxAmount = function() {
+            document.getElementById('withdrawAmount').value = availableAmount.toFixed(2);
+        };
+
+        window.closeModal = function() {
+            document.getElementById('withdrawModal').classList.add('hidden');
+        };
+
+        window.confirmWithdraw = function() {
+            const walletAddress = document.getElementById('walletAddress').value;
+            const withdrawAmount = parseFloat(document.getElementById('withdrawAmount').value);
+            
+            // Validaciones
+            if (!walletAddress) {
+                alert('Por favor ingresa una dirección de wallet válida');
+                return;
+            }
+            
+            if (!walletAddress.startsWith('0x')) {
+                alert('La dirección debe comenzar con 0x');
+                return;
+            }
+            
+            if (!withdrawAmount || withdrawAmount <= 0) {
+                alert('Por favor ingresa un monto válido a retirar');
+                return;
+            }
+            
+            if (withdrawAmount > availableAmount) {
+                alert('El monto a retirar no puede ser mayor al saldo disponible (' + availableAmount.toFixed(2) + ' ' + currentCurrency + ')');
+                return;
+            }
+            
+            // Confirmación final
+            const confirmMessage = `¿Confirmas el retiro de ${withdrawAmount.toFixed(2)} ${currentCurrency} a la wallet ${walletAddress}?`;
+            if (confirm(confirmMessage)) {
+                // Aquí iría la lógica de retiro real
+                alert('Procesando retiro de ' + withdrawAmount.toFixed(2) + ' ' + currentCurrency + ' a la wallet: ' + walletAddress);
+                closeModal();
+            }
+        };
+
+        // Evento cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cerrar modal si se hace click fuera de él
+            const modal = document.getElementById('withdrawModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // Validación en tiempo real del monto
+            const withdrawAmountInput = document.getElementById('withdrawAmount');
+            if (withdrawAmountInput) {
+                withdrawAmountInput.addEventListener('input', function() {
+                    const value = parseFloat(this.value);
+                    if (value > availableAmount) {
+                        this.style.borderColor = '#ef4444'; // Color rojo
+                        this.style.boxShadow = '0 0 0 1px #ef4444';
+                    } else {
+                        this.style.borderColor = '#d1d5db'; // Color normal
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

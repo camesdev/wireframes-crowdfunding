@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complejo Residencial El Retiro - Remitt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Modal_Inversión.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Explorar Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Marketplace_P2P.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Marketplace P2P
+                    </a>
+                </li>
+                <li>
+                    <a href="Historial_de_Transacciones.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Historial transacciones
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Simplificado -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden md:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <div class="relative transform rotate-180">
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">2</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Estado de Wallet Conectado -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                        <span class="text-sm font-medium hidden lg:block">0x1234...5678</span>
+                        <span class="text-sm font-medium lg:hidden">✓</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aviso KYC en Header -->
+            <div class="bg-gray-100 border-b border-gray-300 px-4 py-2">
+                <div class="container mx-auto flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-gray-500 rounded-full flex items-center justify-center mr-2">
+                            <span class="text-white text-xs">!</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Completa tu verificación KYC</span>
+                    </div>
+                    <button class="bg-black text-white px-4 py-1 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                        Verificar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+                <!-- Contador Pre-Lanzamiento -->
+        <div class="container mx-auto px-4 py-6">
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-black">
+                <!-- Header del Pre-Lanzamiento -->
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-black mb-2">Pre-Lanzamiento: Complejo Metropolitano Dubai</h2>
+                    </div>
+                    <div class="mt-4 lg:mt-0">
+                        <span class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium">
+                            Lanzamiento General: 15 Feb 2025, 15:00 UTC
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Contadores por Tier -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <!-- Tier 1 - Acceso en 3 horas -->
+                    <div class="border-2 border-black rounded-lg p-4 bg-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-black">TIER 1</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-3">Acceso anticipado de 3 horas</p>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="text-center">
+                                <div class="bg-black text-white rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">02</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Días</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-black text-white rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">09</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Hrs</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-black text-white rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">23</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Min</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-black text-white rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">45</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tier 2 - Acceso en 2 horas -->
+                    <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-gray-700">TIER 2</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-3">Acceso anticipado de 2 horas</p>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">02</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Días</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">10</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Hrs</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">23</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Min</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">45</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tier 3 - Acceso en 1 hora -->
+                    <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-gray-700">TIER 3</h3>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-3">Acceso anticipado de 1 hora</p>
+                        <div class="grid grid-cols-4 gap-2">
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">02</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Días</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">11</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Hrs</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">23</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Min</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-gray-300 text-gray-500 rounded-md py-2 px-1">
+                                    <span class="text-lg font-bold">45</span>
+                                </div>
+                                <span class="text-xs text-gray-500 mt-1">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Contenido Principal -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-6">
+                <a href="Modal_Inversión.html" class="hover:text-gray-700">Explorar Proyectos</a>
+                <span>></span>
+                <span class="text-gray-700 font-medium">Complejo Metropolitano Dubai</span>
+            </nav>
+
+            <!-- Header del Proyecto -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                    <div class="mb-4 lg:mb-0">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <h1 class="text-3xl font-bold text-black">Complejo Metropolitano Dubai</h1>
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Residencial</span>
+                            <span class="bg-black text-white px-3 py-1 rounded text-sm">Pre-lanzamiento</span>
+                        </div>
+                        <p class="text-gray-500 text-lg">Dubai, EAU</p>
+                        <p class="text-gray-700 mt-2">Exclusivo desarrollo residencial en zona premium con amenidades de lujo y ubicación estratégica.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid Principal -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Columna Principal -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Sistema de Pestañas -->
+                    <section class="bg-white rounded-lg shadow-md">
+                        <!-- Navegación de Pestañas -->
+                        <div class="border-b border-gray-300">
+                            <nav class="flex space-x-8 px-6">
+                                <button onclick="showTab('general')" id="tab-general" class="tab-button py-4 px-2 text-sm font-medium border-b-2 border-black text-black">
+                                    Información General
+                                </button>
+                                <button onclick="showTab('cronograma')" id="tab-cronograma" class="tab-button py-4 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                                    Cronograma e Hitos
+                                </button>
+                                <button onclick="showTab('documentos')" id="tab-documentos" class="tab-button py-4 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                                    Documentación Legal
+                                </button>
+                            </nav>
+                        </div>
+
+                        <!-- Contenido de las Pestañas -->
+                        <div class="p-6">
+                            <!-- Pestaña: Información General -->
+                            <div id="content-general" class="tab-content">
+                                <!-- Galería de Imágenes -->
+                                <div class="mb-8">
+                                    <h2 class="text-2xl font-bold mb-4">Galería Multimedia</h2>
+                                    <div class="bg-gray-300 rounded-lg h-96 flex items-center justify-center mb-4">
+                                        <span class="text-gray-500 text-lg">Galería Principal del Proyecto</span>
+                                    </div>
+                                    <div class="grid grid-cols-4 gap-2">
+                                        <div class="h-20 bg-gray-300 rounded cursor-pointer"></div>
+                                        <div class="h-20 bg-gray-300 rounded cursor-pointer"></div>
+                                        <div class="h-20 bg-gray-300 rounded cursor-pointer"></div>
+                                        <div class="h-20 bg-gray-300 rounded cursor-pointer"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Descripción Detallada -->
+                                <div class="mb-8">
+                                    <h2 class="text-2xl font-bold mb-4">Descripción del Proyecto</h2>
+                                    <div class="prose prose-gray max-w-none">
+                                        <p class="mb-4">
+                                            El Complejo Residencial El Retiro representa una oportunidad única de inversión en el sector inmobiliario de Medellín. 
+                                            Ubicado en una de las zonas más valoradas de la ciudad, este desarrollo combina arquitectura moderna con amenidades de lujo.
+                                        </p>
+                                        <p class="mb-4">
+                                            El proyecto incluye 120 unidades residenciales distribuidas en 3 torres de 15 pisos cada una, con acabados de primera calidad 
+                                            y espacios comunes que incluyen gimnasio, piscina, salón social y zonas verdes.
+                                        </p>
+                                        <h3 class="text-lg font-bold mt-6 mb-3">Características Principales:</h3>
+                                        <ul class="list-disc pl-6 space-y-1">
+                                            <li>Ubicación premium en El Poblado</li>
+                                            <li>120 apartamentos de 2 y 3 habitaciones</li>
+                                            <li>Amenidades completas de lujo</li>
+                                            <li>Seguridad 24/7 y portería</li>
+                                            <li>Parqueaderos subterráneos</li>
+                                            <li>Certificación sostenible LEED</li>
+                                        </ul>
+
+                                        <h3 class="text-lg font-bold mt-6 mb-3">Información del Desarrollador:</h3>
+                                        <div class="bg-gray-100 rounded-lg p-4">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div>
+                                                    <p class="text-sm text-gray-500">Desarrollador</p>
+                                                    <p class="font-bold">Constructora El Retiro S.A.S.</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-500">Experiencia</p>
+                                                    <p class="font-bold">25+ años en el sector</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-500">Proyectos Completados</p>
+                                                    <p class="font-bold">15 desarrollos residenciales</p>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm text-gray-500">Contacto</p>
+                                                    <p class="font-bold">info@elretiro.com.co</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Disclaimer Legal -->
+                                <div class="bg-gray-100 rounded-lg p-6 border-l-4 border-gray-500">
+                                    <h3 class="font-bold text-gray-700 mb-3">Importante - Disclaimer Legal</h3>
+                                    <p class="text-sm text-gray-600">
+                                        <strong>Los rendimientos proyectados son variables y no están garantizados.</strong> Su inversión está sujeta a riesgos de mercado, incluyendo posible pérdida de capital. 
+                                        Este proyecto inmobiliario puede experimentar retrasos, cambios en las condiciones del mercado o factores externos que afecten el retorno esperado. 
+                                        Las proyecciones se basan en análisis actuales y pueden variar. Al invertir, usted acepta estos riesgos y los términos y condiciones de Remitt. 
+                                        Se recomienda leer toda la documentación legal antes de tomar decisiones de inversión.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Pestaña: Cronograma e Hitos -->
+                            <div id="content-cronograma" class="tab-content hidden">
+                                <h2 class="text-2xl font-bold mb-6">Timeline de Desarrollo</h2>
+                                <div class="space-y-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-4 h-4 bg-black rounded-full mt-1"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-lg">Adquisición del Terreno</h4>
+                                            <p class="text-sm text-gray-500 mb-2">Completado - Enero 2024</p>
+                                            <p class="text-gray-700">Se completó la compra del lote de 8,500 m² en la zona de El Poblado, con escrituras registradas ante notaría.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-4 h-4 bg-black rounded-full mt-1"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-lg">Permisos y Licencias</h4>
+                                            <p class="text-sm text-gray-500 mb-2">Completado - Abril 2024</p>
+                                            <p class="text-gray-700">Aprobación de licencia de construcción, estudios de suelos, permisos ambientales y plan parcial urbanístico.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-4 h-4 bg-gray-500 rounded-full mt-1"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-lg">Inicio de Construcción</h4>
+                                            <p class="text-sm text-gray-500 mb-2">En Progreso - Julio 2024</p>
+                                            <p class="text-gray-700">Excavación completada al 85%. Iniciando trabajos de cimentación y estructura del primer nivel de sótano.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-4 h-4 bg-gray-300 rounded-full mt-1"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-lg">Finalización Estructura</h4>
+                                            <p class="text-sm text-gray-500 mb-2">Proyectado - Diciembre 2025</p>
+                                            <p class="text-gray-700">Completar estructura de concreto de las 3 torres, instalaciones hidráulicas y eléctricas principales.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-4 h-4 bg-gray-300 rounded-full mt-1"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-lg">Acabados y Amenidades</h4>
+                                            <p class="text-sm text-gray-500 mb-2">Proyectado - Marzo 2026</p>
+                                            <p class="text-gray-700">Instalación de acabados interiores, construcción de amenidades comunes y paisajismo de zonas verdes.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-4">
+                                        <div class="w-4 h-4 bg-gray-300 rounded-full mt-1"></div>
+                                        <div class="flex-1">
+                                            <h4 class="font-bold text-lg">Entrega Final</h4>
+                                            <p class="text-sm text-gray-500 mb-2">Proyectado - Junio 2026</p>
+                                            <p class="text-gray-700">Entrega de unidades a propietarios finales y liquidación de la inversión según términos establecidos.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Actualizaciones Recientes -->
+                                <div class="mt-8">
+                                    <h2 class="text-2xl font-bold mb-6">Actualizaciones Recientes</h2>
+                                    <div class="space-y-4">
+                                        <div class="border-l-4 border-black pl-4 bg-gray-100 p-4 rounded-r-lg">
+                                            <h4 class="font-bold">Avance de Construcción - Semana 3</h4>
+                                            <p class="text-sm text-gray-500 mb-2">15 de Enero, 2025</p>
+                                            <p class="text-gray-700">Se completó la excavación del sótano nivel -2 y se iniciaron los trabajos de cimentación de la Torre A. Progreso general del proyecto: 23%.</p>
+                                        </div>
+                                        <div class="border-l-4 border-gray-300 pl-4 bg-gray-50 p-4 rounded-r-lg">
+                                            <h4 class="font-bold">Aprobación de Diseños Finales</h4>
+                                            <p class="text-sm text-gray-500 mb-2">8 de Enero, 2025</p>
+                                            <p class="text-gray-700">Los planos arquitectónicos finales fueron aprobados por la curaduría urbana, permitiendo acelerar el cronograma de construcción.</p>
+                                        </div>
+                                        <div class="border-l-4 border-gray-300 pl-4 bg-gray-50 p-4 rounded-r-lg">
+                                            <h4 class="font-bold">Inicio de Trabajos de Excavación</h4>
+                                            <p class="text-sm text-gray-500 mb-2">22 de Diciembre, 2024</p>
+                                            <p class="text-gray-700">Se dio inicio a los trabajos de excavación según el cronograma establecido. Movilización completa de maquinaria pesada al sitio.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pestaña: Documentación Legal -->
+                            <div id="content-documentos" class="tab-content hidden">
+                                <h2 class="text-2xl font-bold mb-6">Documentos Legales Disponibles</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <a href="#" class="flex items-center justify-between p-4 border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-100 transition-all">
+                                        <div>
+                                            <h4 class="font-bold">Prospecto de Inversión</h4>
+                                            <p class="text-sm text-gray-500">Información detallada del proyecto</p>
+                                        </div>
+                                        <span class="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded">PDF</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-100 transition-all">
+                                        <div>
+                                            <h4 class="font-bold">Escritura del Terreno</h4>
+                                            <p class="text-sm text-gray-500">Títulos de propiedad registrados</p>
+                                        </div>
+                                        <span class="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded">PDF</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-100 transition-all">
+                                        <div>
+                                            <h4 class="font-bold">Licencia de Construcción</h4>
+                                            <p class="text-sm text-gray-500">Permisos municipales vigentes</p>
+                                        </div>
+                                        <span class="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded">PDF</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-100 transition-all">
+                                        <div>
+                                            <h4 class="font-bold">Estudio de Factibilidad</h4>
+                                            <p class="text-sm text-gray-500">Análisis técnico y financiero</p>
+                                        </div>
+                                        <span class="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded">PDF</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-100 transition-all">
+                                        <div>
+                                            <h4 class="font-bold">Planos Arquitectónicos</h4>
+                                            <p class="text-sm text-gray-500">Diseños técnicos aprobados</p>
+                                        </div>
+                                        <span class="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded">PDF</span>
+                                    </a>
+                                    <a href="#" class="flex items-center justify-between p-4 border-2 border-gray-300 rounded-lg hover:border-black hover:bg-gray-100 transition-all">
+                                        <div>
+                                            <h4 class="font-bold">Términos y Condiciones</h4>
+                                            <p class="text-sm text-gray-500">Condiciones de inversión</p>
+                                        </div>
+                                        <span class="text-gray-500 text-xs bg-gray-200 px-2 py-1 rounded">PDF</span>
+                                    </a>
+                                </div>
+
+                                <!-- Información Adicional -->
+                                <div class="mt-8 bg-gray-100 rounded-lg p-6">
+                                    <h3 class="font-bold text-gray-700 mb-3">Información de Descarga</h3>
+                                    <p class="text-sm text-gray-600 mb-4">
+                                        Todos los documentos están disponibles para descarga inmediata. Se recomienda revisar el prospecto de inversión 
+                                        antes de tomar cualquier decisión. Los documentos están actualizados al 15 de Enero de 2025.
+                                    </p>
+                                    <button class="bg-black text-white px-6 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                        Descargar Todos los Documentos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar Derecho -->
+                <div class="space-y-6">
+                    <!-- Progreso de Fondeo -->
+                    <section class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-4">Progreso de Fondeo</h3>
+                        
+                        <!-- Barra de Progreso -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Fondeo Actual</span>
+                                <span class="text-lg font-bold text-black">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-3">
+                                <div class="bg-black h-3 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-500 mt-2">
+                                <span>0 USDT</span>
+                                <span>3,000,000 USDT</span>
+                            </div>
+                        </div>
+
+                        <!-- Métricas Clave -->
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-300">
+                                <span class="text-gray-700">ROI Proyectado:</span>
+                                <span class="font-bold text-lg">18.5%</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-300">
+                                <span class="text-gray-700">Inversión Mínima:</span>
+                                <span class="font-bold">100 USDT</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-300">
+                                <span class="text-gray-700">Tiempo Restante:</span>
+                                <span class="font-bold">23 días</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-300">
+                                <span class="text-gray-700">Total Inversionistas:</span>
+                                <span class="font-bold">87</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-700">Duración Proyecto:</span>
+                                <span class="font-bold">24 meses</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA Principal -->
+                        <div class="mt-6 pt-4 border-t border-gray-300">
+                            <button class="w-full bg-black text-white py-3 rounded-md font-medium hover:bg-gray-700 transition-colors mb-3">
+                               <a href="Modal_Inversión_Activa.html">
+                                    Invertir Ahora
+                                </a>
+                            </button>
+                            <button class="w-full bg-gray-100 text-gray-700 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                📹 Ver LiveCam
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Simplificado -->
+        <footer class="bg-white border-t border-gray-300 py-6 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">
+                    © 2025 Remitt. Crowdfunding inmobiliario tokenizado en BSC.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript para Sistema de Pestañas -->
+    <script>
+        // Función para cambiar pestañas
+        function showTab(tabId) {
+            // Ocultar todos los contenidos
+            const allContents = document.querySelectorAll('.tab-content');
+            allContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Resetear estilos de todos los botones
+            const allButtons = document.querySelectorAll('.tab-button');
+            allButtons.forEach(button => {
+                button.classList.remove('border-black', 'text-black');
+                button.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Mostrar contenido seleccionado
+            const selectedContent = document.getElementById('content-' + tabId);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+            
+            // Activar botón seleccionado
+            const selectedButton = document.getElementById('tab-' + tabId);
+            if (selectedButton) {
+                selectedButton.classList.remove('border-transparent', 'text-gray-500');
+                selectedButton.classList.add('border-black', 'text-black');
+            }
+        }
+        
+        // Inicializar con la primera pestaña activa
+        document.addEventListener('DOMContentLoaded', function() {
+            showTab('general');
+        });
+    </script>
+</body>
+</html>

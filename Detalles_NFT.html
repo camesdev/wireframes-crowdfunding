@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles NFT - Remitt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="#" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Explorar Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Marketplace P2P
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Historial transacciones
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Simplificado -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                     <!-- Tier del Usuario -->
+                    <div class="hidden md:flex items-center bg-black text-white px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-white rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Tier T1</span>
+                    </div>
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden md:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">2</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Estado de Wallet Conectado -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                        <span class="text-sm font-medium hidden lg:block">0x1234...5678</span>
+                        <span class="text-sm font-medium lg:hidden">✓</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aviso KYC en Header (versión compacta) -->
+            <div class="bg-gray-100 border-b border-gray-300 px-4 py-2">
+                <div class="container mx-auto flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-gray-500 rounded-full flex items-center justify-center mr-2">
+                            <span class="text-white text-xs">!</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Completa tu verificación KYC</span>
+                    </div>
+                    <button class="bg-black text-white px-4 py-1 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                        Verificar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Modal Overlay -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <!-- Modal Container -->
+            <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
+                <!-- Modal Header -->
+                <div class="sticky top-0 bg-white border-b border-gray-300 p-6 flex items-center justify-between rounded-t-lg">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gray-300 rounded-md flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">IMG</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-black">Residencial Los Álamos</h2>
+                            <p class="text-gray-500">NFT #001234 • Medellín, Colombia</p>
+                        </div>
+                    </div>
+                    <a href="Dashboard.html">
+                        <button class="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center hover:bg-gray-200 transition-colors">
+                        <span class="text-gray-500 text-xl">×</span>
+                        </button>
+                    </a>
+                </div>
+
+                <!-- Modal Content -->
+                <div class="p-6">
+                    <!-- Imagen del NFT -->
+                    <div class="flex justify-center mb-8">
+                        <div class="w-64 h-64 bg-gray-300 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-lg">Imagen del NFT</span>
+                        </div>
+                    </div>
+
+                    <!-- Información NFT Específica -->
+                    <div class="bg-white border border-gray-300 rounded-lg p-6">
+                        <h3 class="text-xl font-bold mb-6">Información de tu NFT</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">ID del Token</p>
+                                <p class="font-bold text-lg">#001234</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Fecha de Compra</p>
+                                <p class="font-bold">15 de Marzo, 2024</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Participación neta</p>
+                                <p class="font-bold">949 USDT</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Participación</p>
+                                <p class="font-bold">0.02% del proyecto</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Tipo de NFT</p>
+                                <p class="font-bold">Soulbound (No transferible)</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">Estado Actual</p>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm border border-gray-300 font-medium">Activo</span>
+                            </div>
+                            <div class="md:col-span-2">
+                                <p class="text-sm text-gray-500 mb-1">Hash de Transacción</p>
+                                <p class="font-bold text-sm break-all">0xabc123def456ghi789jkl012mno345pqr678stu901vwx234yz567</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Botones de Acción -->
+                        <div class="flex justify-center mt-8 pt-6 border-t border-gray-300">
+                            <button class="bg-gray-100 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors border border-gray-300">
+                                🔗 Ver en BSC Scan
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Disclaimer Legal -->
+                    <div class="bg-gray-100 rounded-lg p-6 border-l-4 border-gray-500 mt-8">
+                        <h4 class="font-bold text-gray-700 mb-3">Importante - Disclaimer Legal</h4>
+                        <p class="text-sm text-gray-600">
+                            <strong>Los rendimientos proyectados son variables y no están garantizados.</strong> Su inversión está sujeta a riesgos de mercado, 
+                            incluyendo posible pérdida de capital. Este NFT representa una participación en un proyecto inmobiliario que puede experimentar retrasos, 
+                            cambios en las condiciones del mercado o factores externos que afecten el retorno esperado. Las proyecciones se basan en análisis actuales 
+                            y pueden variar. Al poseer este NFT, usted acepta estos riesgos y los términos y condiciones de Remitt.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

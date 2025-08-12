@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proyectos - Remitt Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación Admin -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+                <span class="ml-2 text-sm font-bold text-gray-700">Admin Panel</span>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_Proyectos_Admin.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Gestión de Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_de_Usuarios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion_fees_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Configuración de Fees
+                    </a>
+                </li>
+                <li>
+                    <a href="Bolsas_internas_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Bolsas Internas
+                    </a>
+                </li>
+               <li>
+                    <a href="Entrega_de_Beneficios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Entrega de Beneficios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Admin Info -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-gray-100 p-3 rounded-lg text-center">
+                <p class="text-xs text-gray-500">Admin:</p>
+                <p class="text-sm font-medium">admin@remitt.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Admin -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt Admin</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden lg:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Título de Sección -->
+        <div class="px-6 py-6 bg-white border-b border-gray-300">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-gray-300 rounded-lg flex items-center justify-center mb-4">
+                    <div class="w-8 h-8 bg-black rounded-md"></div>
+                </div>
+                <h1 class="text-2xl font-bold text-black mb-2">Gestión de Proyectos</h1>
+                <p class="text-sm text-gray-500">Administra proyectos inmobiliarios de crowdfunding</p>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <main class="p-6">
+            <!-- Barra de Herramientas -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                    <!-- Búsqueda y Filtros -->
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                        <div class="relative">
+                            <input type="text" placeholder="Buscar proyectos..." 
+                                   class="w-full sm:w-80 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black">
+                        </div>
+                        
+                        <select class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black">
+                            <option>Todos los estados</option>
+                            <option>Prelanzamiento</option>
+                            <option>En Fondeo </option>
+                            <option>Fondeo Completado</option>
+                            <option>Completado</option>
+                            <option>Pagado</option>
+                            <option>Reembolsado</option>
+                        </select>
+                        
+                        <select class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black">
+                            <option>Todos los Tipos</option>
+                            <option>Residencial</option>
+                            <option>Comercial</option>
+                            <option>Mixto</option>
+                            <option>Industrial</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Botón Crear Proyecto -->
+                    <button class="bg-black text-white px-6 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                        <a href="Crear_y_Editar_Proyecto_Admin.html">+ Crear Nuevo Proyecto</a>
+                    </button>
+                </div>
+                
+                <!-- Métricas Rápidas -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6 pt-6 border-t border-gray-300">
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">22</p>
+                        <p class="text-sm text-gray-500">Total Proyectos</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">3</p>
+                        <p class="text-sm text-gray-500">En Fondeo</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">8</p>
+                        <p class="text-sm text-gray-500">Fondeo Completo</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">6</p>
+                        <p class="text-sm text-gray-500">Completado</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">6</p>
+                        <p class="text-sm text-gray-500">Pagado</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lista de Proyectos -->
+            <section class="bg-white rounded-lg shadow-md">
+                <!-- Header de Tabla -->
+                <div class="px-6 py-4 border-b border-gray-300 bg-gray-50">
+                    <div class="grid grid-cols-12 gap-4 text-sm font-medium text-gray-700">
+                        <div class="col-span-3">Proyecto</div>
+                        <div class="col-span-2">Estado</div>
+                        <div class="col-span-2">Fondeo</div>
+                        <div class="col-span-1 text-center">ROI</div>
+                        <div class="col-span-1 text-center">Inversores</div>
+                        <div class="col-span-2">Fechas</div>
+                        <div class="col-span-1">Acciones</div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 1 - EN FONDEO -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Complejo Residencial El Retiro</h3>
+                                    <p class="text-xs text-gray-500">Medellín, Colombia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-black text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                En Fondeo
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">365K / 500K USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">73%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-black h-2 rounded-full transition-all duration-300" style="width: 73%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">18.5%</div>
+                            <div class="text-xs text-gray-500">Proyectado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">87</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">15 Ene 2025</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-500">Por definir</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                <a href="Crear_y_Editar_Proyecto_Admin.html">Editar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 - FONDEO COMPLETO -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Torre Empresarial Dubai</h3>
+                                    <p class="text-xs text-gray-500">Dubai, UAE</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-500 text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                Fondeo Completo
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">2M / 2M USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-500 h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">22.0%</div>
+                            <div class="text-xs text-gray-500">Proyectado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">156</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">10 Ene 2025</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-900 font-medium">Jun 2027</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 - COMPLETADO -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Residencial Costa Brava</h3>
+                                    <p class="text-xs text-gray-500">Barcelona, España</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-500 text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                Completado
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">850K / 850K USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-500 h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">19.8%</div>
+                            <div class="text-xs text-gray-500">Proyectado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">94</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">05 Nov 2024</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-900 font-medium">12 Ene 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 4 - COMPLETADO -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Centro Comercial Zona Rosa</h3>
+                                    <p class="text-xs text-gray-500">Ciudad de México, México</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-500 text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                Completado
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">1.5M / 1.5M USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-500 h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">21.2%</div>
+                            <div class="text-xs text-gray-500">Proyectado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">210</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">28 Dic 2024</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-900 font-medium">18 Ene 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 5 - FONDEO COMPLETO -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Edificio Corporativo Las Condes</h3>
+                                    <p class="text-xs text-gray-500">Santiago, Chile</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-500 text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                Fondeo Completo
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">980K / 980K USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-500 h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">17.5%</div>
+                            <div class="text-xs text-gray-500">Proyectado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">78</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">18 Dic 2024</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-900 font-medium">Ago 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 6 - PAGADOS -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Residencial Puerto Madero</h3>
+                                    <p class="text-xs text-gray-500">Buenos Aires, Argentina</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-700 text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                Reembolsado
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">500K / 750K USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">66%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-700 h-2 rounded-full transition-all duration-300" style="width: 66%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">0%</div>
+                            <div class="text-xs text-gray-500">Entregado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">67</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">28 Oct 2024</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-900 font-medium">Cancelado</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 7 - PAGADOS -->
+                <div class="px-6 py-5 border-b border-gray-300 hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-gray-300 rounded-lg flex-shrink-0"></div>
+                                <div class="min-w-0">
+                                    <h3 class="font-bold text-black text-sm mb-1 leading-tight">Complejo Turístico Cartagena</h3>
+                                    <p class="text-xs text-gray-500">Cartagena, Colombia</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-700 text-white px-3 py-1.5 rounded-md text-xs font-medium inline-block">
+                                Pagado
+                            </span>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-semibold text-gray-900">1.2M / 1.2M USDT</span>
+                                    <span class="text-xs font-medium text-gray-600">100%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-700 h-2 rounded-full transition-all duration-300" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-lg text-black">24.3%</div>
+                            <div class="text-xs text-gray-500">Entregado</div>
+                        </div>
+                        <div class="col-span-1 text-center">
+                            <div class="font-bold text-base text-black">145</div>
+                            <div class="text-xs text-gray-500">Personas</div>
+                        </div>
+                        <div class="col-span-2">
+                            <div class="space-y-1">
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Creado:</span>
+                                    <span class="text-gray-900 font-medium">15 Sep 2024</span>
+                                </div>
+                                <div class="flex justify-between text-xs">
+                                    <span class="text-gray-500">Finaliza:</span>
+                                    <span class="text-gray-900 font-medium">05 Dic 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <button class="w-full bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-lg px-2 py-2 text-xs font-medium transition-all duration-200">
+                                Editar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div class="px-6 py-4 border-t border-gray-300 flex justify-between items-center">
+                    <p class="text-sm text-gray-500">Mostrando 7 de 22 proyectos</p>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">Anterior</button>
+                        <button class="px-3 py-1 bg-black text-white rounded-md text-sm">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">3</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">Siguiente</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

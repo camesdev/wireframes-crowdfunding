@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega de Beneficios - Remitt Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación Admin -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+                <span class="ml-2 text-sm font-bold text-gray-700">Admin Panel</span>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_Proyectos_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_de_Usuarios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion_fees_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Configuración de Fees
+                    </a>
+                </li>
+                <li>
+                    <a href="Bolsas_internas_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Bolsas Internas
+                    </a>
+                </li>
+                <li>
+                    <a href="Entrega_de_Beneficios.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Entrega de Beneficios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Admin Info -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-gray-100 p-3 rounded-lg text-center">
+                <p class="text-xs text-gray-500">Admin:</p>
+                <p class="text-sm font-medium">admin@remitt.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Admin -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt Admin</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden lg:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">3</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Header de Entrega de Beneficios -->
+            <section class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="text-center">
+                    <!-- Imagen/Icono -->
+                    <div class="mx-auto mb-6 w-20 h-20 bg-gray-300 rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 bg-black rounded-md flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">💰</span>
+                        </div>
+                    </div>
+                    
+                    <h1 class="text-3xl font-bold text-black mb-4">Entrega de Beneficios</h1>
+                    <p class="text-gray-500 text-lg max-w-2xl mx-auto">Gestiona y distribuye los beneficios de proyectos inmobiliarios a los inversionistas</p>
+                </div>
+            </section>
+
+            <!-- Selector de Proyecto -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">Seleccionar Proyecto</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="lg:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Proyecto Inmobiliario</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
+                            <option value="">Seleccionar proyecto...</option>
+                            <option value="el-retiro" selected>Complejo Residencial El Retiro</option>
+                            <option value="torres-del-sur">Torres del Sur</option>
+                            <option value="verde-valley">Verde Valley Apartments</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button id="cargar-beneficios-btn" class="w-full bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors text-sm">
+                            Dispersión de Beneficios
+                        </button>
+                    </div>
+                    <div class="flex items-end">
+                        <button id="reembolso-btn" class="w-full bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors text-sm">
+                            Reembolso de Capital
+                        </button>
+                    </div>
+                    <div class="flex items-end">
+                        <button id="pago-comisiones-btn" class="w-full bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors text-sm">
+                            Pago de Comisiones
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-4 mb-6">
+                    <div class="flex items-end">
+                        <button id="marcar-pagado-btn" class="bg-gray-100 text-gray-700 px-6 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                            Marcar como Pagado
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info del Proyecto Seleccionado -->
+                <div class="bg-gray-100 rounded-lg p-4">
+                    <h3 class="font-bold text-lg mb-3">Complejo Residencial El Retiro</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-black">87</p>
+                            <p class="text-sm text-gray-500">Total Inversionistas</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-black">365,000</p>
+                            <p class="text-sm text-gray-500">USDT Invertidos</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-black">67,525</p>
+                            <p class="text-sm text-gray-500">USDT Beneficios</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-bold text-black">18.5%</p>
+                            <p class="text-sm text-gray-500">ROI Período</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sistema de Pestañas -->
+            <section class="bg-white rounded-lg shadow-md mb-8">
+                <!-- Navegación de Pestañas -->
+                <div class="border-b border-gray-300">
+                    <nav class="flex space-x-8 px-6">
+                        <button id="tab-inversionistas" class="tab-button py-4 px-2 text-sm font-medium border-b-2 border-black text-black">
+                            Lista de Inversionistas
+                        </button>
+                        <button id="tab-historial" class="tab-button py-4 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                            Historial de Entregas
+                        </button>
+                        <button id="tab-proyectos-pagados" class="tab-button py-4 px-2 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                            Proyectos Pagados
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Contenido de las Pestañas -->
+                <div class="tab-container">
+                    <!-- Pestaña: Lista de Inversionistas -->
+                    <div id="content-inversionistas" class="tab-content">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inversionista</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NFT ID</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inversión</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">% Participación</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Beneficio</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-300">
+                                    <!-- Inversionista 1 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">0x1a2b...def456</p>
+                                                <p class="text-gray-500">Usuario #0001</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-mono text-xs">#NFT-001</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">5,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">1.37%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">925.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-gray-500 text-white rounded">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <button class="bg-black text-white px-3 py-1 rounded text-xs font-medium hover:bg-gray-700 transition-colors">
+                                                Entregar
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Inversionista 2 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">0x2b3c...789abc</p>
+                                                <p class="text-gray-500">Usuario #0002</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-mono text-xs">#NFT-002</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">3,200.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">0.88%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">592.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Entregado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="text-gray-500 text-xs">Completado</span>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Inversionista 3 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">0x3c4d...123def</p>
+                                                <p class="text-gray-500">Usuario #0003</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-mono text-xs">#NFT-003</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">1,500.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">0.41%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">277.50</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-gray-500 text-white rounded">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <button class="bg-black text-white px-3 py-1 rounded text-xs font-medium hover:bg-gray-700 transition-colors">
+                                                Entregar
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Inversionista 4 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">0x4d5e...456789</p>
+                                                <p class="text-gray-500">Usuario #0004</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-mono text-xs">#NFT-004</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">8,750.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">2.40%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">1,618.75</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-gray-500 text-white rounded">
+                                                Pendiente
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <button class="bg-black text-white px-3 py-1 rounded text-xs font-medium hover:bg-gray-700 transition-colors">
+                                                Entregar
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Inversionista 5 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">0x5e6f...890123</p>
+                                                <p class="text-gray-500">Usuario #0005</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-mono text-xs">#NFT-005</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">2,100.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">0.58%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">388.50</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Entregado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="text-gray-500 text-xs">Completado</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Paginación -->
+                        <div class="px-6 py-4 bg-gray-100 border-t border-gray-300">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-gray-500">
+                                    Mostrando 1-5 de 87 inversionistas
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        Anterior
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-black text-white border border-black rounded-md">
+                                        1
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        2
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        3
+                                    </button>
+                                    <span class="px-2 text-sm text-gray-500">...</span>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        18
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pestaña: Historial de Entregas -->
+                    <div id="content-historial" class="tab-content hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Proyecto</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inversionistas</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Entregado</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-300">
+                                    <!-- Entrega 1 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">25/01/2025</p>
+                                                <p class="text-gray-500">16:45:22</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            Complejo El Retiro
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">87</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">58,420.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Entrega 2 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">18/01/2025</p>
+                                                <p class="text-gray-500">14:32:15</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            Torres del Sur
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">142</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">89,650.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Entrega 3 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">10/01/2025</p>
+                                                <p class="text-gray-500">11:28:09</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            Verde Valley
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold">65</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">34,280.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Paginación -->
+                        <div class="px-6 py-4 bg-gray-100 border-t border-gray-300">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-gray-500">
+                                    Mostrando 1-3 de 3 entregas recientes
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        Anterior
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-black text-white border border-black rounded-md">
+                                        1
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pestaña: Proyectos Pagados -->
+                    <div id="content-proyectos-pagados" class="tab-content hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre del Proyecto</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Inversionistas</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fondeo Total</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Beneficios Totales</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ROI</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha Cierre</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-300">
+                                    <!-- Proyecto 1 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">Torres del Sur</p>
+                                                <p class="text-gray-500">Medellín, Colombia</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black">142</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">485,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">94,575.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black text-lg">19.5%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">18/01/2025</p>
+                                                <p class="text-gray-500">14:32:15</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Proyecto 2 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">Verde Valley Apartments</p>
+                                                <p class="text-gray-500">Bogotá, Colombia</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black">65</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">220,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">37,400.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black text-lg">17.0%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">10/01/2025</p>
+                                                <p class="text-gray-500">11:28:09</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Proyecto 3 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">Residencial Los Pinos</p>
+                                                <p class="text-gray-500">Cali, Colombia</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black">89</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">320,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">67,200.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black text-lg">21.0%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">28/12/2024</p>
+                                                <p class="text-gray-500">16:45:33</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Proyecto 4 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">Plaza Central Business</p>
+                                                <p class="text-gray-500">Cartagena, Colombia</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black">203</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">675,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">108,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black text-lg">16.0%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">15/12/2024</p>
+                                                <p class="text-gray-500">09:15:42</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Proyecto 5 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">Mirador de la Sabana</p>
+                                                <p class="text-gray-500">Bogotá, Colombia</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black">124</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">410,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">86,100.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black text-lg">21.0%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">02/12/2024</p>
+                                                <p class="text-gray-500">13:22:18</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Proyecto 6 -->
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">Eco Residencial Natura</p>
+                                                <p class="text-gray-500">Pereira, Colombia</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black">76</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">180,000.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-bold text-black">32,400.00</p>
+                                                <p class="text-gray-500">USDT</p>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <span class="font-bold text-black text-lg">18.0%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                                Completado
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                            <div>
+                                                <p class="font-medium">20/11/2024</p>
+                                                <p class="text-gray-500">10:30:55</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Paginación -->
+                        <div class="px-6 py-4 bg-gray-100 border-t border-gray-300">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm text-gray-500">
+                                    Mostrando 1-6 de 6 proyectos completados
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        Anterior
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-black text-white border border-black rounded-md">
+                                        1
+                                    </button>
+                                    <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resumen de Proyectos Pagados (Solo para esta pestaña) -->
+                        <div class="px-6 py-6 bg-white border-t border-gray-300">
+                            <h3 class="text-xl font-bold mb-6 text-center">Resumen de Proyectos Completados</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-black">6</p>
+                                    <p class="text-sm text-gray-500">Proyectos Completados</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-black">699</p>
+                                    <p class="text-sm text-gray-500">Total Inversionistas</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-black">2,290,000</p>
+                                    <p class="text-sm text-gray-500">USDT Fondeo Total</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-black">425,675</p>
+                                    <p class="text-sm text-gray-500">USDT Beneficios Total</p>
+                                </div>
+                                <div class="bg-gray-100 p-4 rounded-lg">
+                                    <p class="text-2xl font-bold text-black">18.6%</p>
+                                    <p class="text-sm text-gray-500">ROI Promedio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Admin -->
+        <footer class="bg-white border-t border-gray-300 py-6 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">
+                    © 2025 Remitt Admin Panel. Gestión de entregas de beneficios del ecosistema.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal Cargar Beneficios -->
+    <div id="modal-cargar-beneficios" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            <!-- Header del Modal -->
+            <div class="px-6 py-4 border-b border-gray-300">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-black">Dispersión Capital y Beneficios</h3>
+                    <button id="cerrar-modal-btn" class="text-gray-500 hover:text-gray-700">
+                        <span class="text-xl">×</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenido del Modal -->
+            <div class="px-6 py-4">
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">Proyecto Seleccionado</h4>
+                    <p class="text-sm text-gray-500 bg-gray-100 p-2 rounded">Complejo Residencial El Retiro</p>
+                </div>
+            
+                <!-- Campo Capital -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Valor del Capital</label>
+                    <input  
+                        id="monto-capital-beneficios"
+                        type="text"
+                        value="365,000.00"
+                        readonly
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-600"
+                    >
+                </div>    
+
+                <!-- Campo Monto -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Monto Total</label>
+                    <input 
+                        type="number" 
+                        id="monto-beneficios"
+                        step="0.01"
+                        placeholder="0.00"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    >
+                </div>
+
+                <!-- Selector de Token -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Token</label>
+                    <select 
+                        id="token-beneficios"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    >
+                        <option value="USDT" selected>USDT</option>
+                        <option value="USDC">USDC</option>
+                    </select>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="bg-gray-100 p-3 rounded-md mb-6">
+                    <p class="text-xs text-gray-600">
+                        <strong>Nota:</strong> Los beneficios se calculan restando el valor del capital y los beneficios restantes se distribuirán proporcionalmente según el porcentaje de participación de cada inversionista en el proyecto.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="px-6 py-4 border-t border-gray-300 flex justify-end space-x-3">
+                <button 
+                    id="cancelar-modal-btn"
+                    class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors"
+                >
+                    Cancelar
+                </button>
+                <button 
+                    id="dispersar-beneficios-btn"
+                    class="bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors"
+                >
+                    Dispersar Beneficios
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Reembolso Capital -->
+    <div id="modal-retorno-capital" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            <!-- Header del Modal -->
+            <div class="px-6 py-4 border-b border-gray-300">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-black">Reembolso de Capital</h3>
+                    <button id="cerrar-modal-reembolso-btn" class="text-gray-500 hover:text-gray-700">
+                        <span class="text-xl">×</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenido del Modal -->
+            <div class="px-6 py-4">
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">Proyecto Seleccionado</h4>
+                    <p class="text-sm text-gray-500 bg-gray-100 p-2 rounded">Torres del Sur</p>
+                </div>
+            
+                <!-- Campo Capital -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Valor del Capital a Reembolsar</label>
+                    <input  
+                        id="monto-capital-reembolso"
+                        type="number"
+                        step="0.01"
+                        value="365000.00"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    >
+                </div>
+
+                <!-- Selector de Token -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Token</label>
+                    <select 
+                        id="token-reembolso"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    >
+                        <option value="USDT" selected>USDT</option>
+                        <option value="USDC">USDC</option>
+                    </select>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="bg-gray-100 p-3 rounded-md mb-6">
+                    <p class="text-xs text-gray-600">
+                        <strong>Nota:</strong> El reembolso se distribuirá proporcionalmente según el pago sin contar con los de participación de cada inversionista en el proyecto. Esta acción liquidará el proyecto completamente. El reembolso no contempla los costos Gasfee.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="px-6 py-4 border-t border-gray-300 flex justify-end space-x-3">
+                <button 
+                    id="cancelar-reembolso-btn"
+                    class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors"
+                >
+                    Cancelar
+                </button>
+                <button 
+                    id="confirmar-reembolso-btn"
+                    class="bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors"
+                >
+                    Reembolsar Capital
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pago de Comisiones -->
+    <div id="modal-pago-comisiones" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            <!-- Header del Modal -->
+            <div class="px-6 py-4 border-b border-gray-300">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-black">Pago de Comisiones</h3>
+                    <button id="cerrar-modal-comisiones-btn" class="text-gray-500 hover:text-gray-700">
+                        <span class="text-xl">×</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenido del Modal -->
+            <div class="px-6 py-4">
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">Proyecto Seleccionado</h4>
+                    <p class="text-sm text-gray-500 bg-gray-100 p-2 rounded">Verde Valley Apartments</p>
+                </div>
+            
+                <!-- Campo Monto -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Monto Total de Comisiones</label>
+                    <input 
+                        id="monto-comisiones"
+                        value="50000.00"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    >
+                </div>
+
+                <!-- Selector de Token -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Token</label>
+                    <select 
+                        id="token-comisiones"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                    >
+                        <option value="USDT" selected>USDT</option>
+                        <option value="USDC">USDC</option>
+                    </select>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="bg-gray-100 p-3 rounded-md mb-6">
+                    <p class="text-xs text-gray-600">
+                        <strong>Nota:</strong> Las comisiones se distribuirán según la configuración establecida. El pago se ejecutará automáticamente a las wallets correspondientes y bolsas correspondientes.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="px-6 py-4 border-t border-gray-300 flex justify-end space-x-3">
+                <button 
+                    id="cancelar-comisiones-btn"
+                    class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors"
+                >
+                    Cancelar
+                </button>
+                <button 
+                    id="pagar-comisiones-btn"
+                    class="bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors"
+                >
+                    Pagar Comisiones
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Marcar como Pagado -->
+    <div id="modal-marcar-pagado" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-md w-full mx-4">
+            <!-- Header del Modal -->
+            <div class="px-6 py-4 border-b border-gray-300">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-bold text-black">Marcar como Pagado</h3>
+                    <button id="cerrar-modal-pagado-btn" class="text-gray-500 hover:text-gray-700">
+                        <span class="text-xl">×</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenido del Modal -->
+            <div class="px-6 py-4">
+                <div class="mb-4">
+                    <h4 class="font-medium text-gray-700 mb-2">Proyecto Seleccionado</h4>
+                    <p class="text-sm text-gray-500 bg-gray-100 p-2 rounded">Complejo Residencial El Retiro</p>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-sm text-gray-700">
+                        ¿Está seguro que desea marcar como pagados todos los beneficios pendientes para este proyecto?
+                    </p>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="bg-gray-100 p-3 rounded-md mb-6">
+                    <p class="text-xs text-gray-600">
+                        <strong>Advertencia:</strong> Esta acción marcará como "Entregado" todos los beneficios que actualmente están en estado "Pendiente" para el proyecto seleccionado.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="px-6 py-4 border-t border-gray-300 flex justify-end space-x-3">
+                <button 
+                    id="cancelar-pagado-btn"
+                    class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors"
+                >
+                    Cancelar
+                </button>
+                <button 
+                    id="confirmar-pagado-btn"
+                    class="bg-black text-white px-4 py-2 rounded-md font-medium hover:bg-gray-700 transition-colors"
+                >
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript básico para modales y tabs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // === SISTEMA DE PESTAÑAS ===
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    // Remover clases activas de todos los botones
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('border-black', 'text-black');
+                        btn.classList.add('border-transparent', 'text-gray-500');
+                    });
+
+                    // Ocultar todos los contenidos
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // Activar el botón clickeado
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    this.classList.add('border-black', 'text-black');
+
+                    // Mostrar el contenido correspondiente
+                    if (this.id === 'tab-inversionistas') {
+                        const contentInversionistas = document.getElementById('content-inversionistas');
+                        if (contentInversionistas) {
+                            contentInversionistas.classList.remove('hidden');
+                        }
+                    } else if (this.id === 'tab-historial') {
+                        const contentHistorial = document.getElementById('content-historial');
+                        if (contentHistorial) {
+                            contentHistorial.classList.remove('hidden');
+                        }
+                    } else if (this.id === 'tab-proyectos-pagados') {
+                        const contentProyectosPagados = document.getElementById('content-proyectos-pagados');
+                        if (contentProyectosPagados) {
+                            contentProyectosPagados.classList.remove('hidden');
+                        }
+                    }
+                });
+            });
+
+            // === MODALES ===
+            // Elementos del DOM para modal Cargar Beneficios
+            const modalCargarBeneficios = document.getElementById('modal-cargar-beneficios');
+            const cargarBeneficiosBtn = document.getElementById('cargar-beneficios-btn');
+            const cerrarModalBtn = document.getElementById('cerrar-modal-btn');
+            const cancelarModalBtn = document.getElementById('cancelar-modal-btn');
+            const dispersarBeneficiosBtn = document.getElementById('dispersar-beneficios-btn');
+
+            // Elementos del DOM para modal Marcar como Pagado
+            const modalMarcarPagado = document.getElementById('modal-marcar-pagado');
+            const marcarPagadoBtn = document.getElementById('marcar-pagado-btn');
+            const cerrarModalPagadoBtn = document.getElementById('cerrar-modal-pagado-btn');
+            const cancelarPagadoBtn = document.getElementById('cancelar-pagado-btn');
+            const confirmarPagadoBtn = document.getElementById('confirmar-pagado-btn');
+
+            // Elementos del DOM para modal Reembolso de Capital
+            const modalReembolsoCapital = document.getElementById('modal-retorno-capital');
+            const reembolsoBtn = document.getElementById('reembolso-btn');
+            const cerrarModalReembolsoBtn = document.getElementById('cerrar-modal-reembolso-btn');
+            const cancelarReembolsoBtn = document.getElementById('cancelar-reembolso-btn');
+            const confirmarReembolsoBtn = document.getElementById('confirmar-reembolso-btn');
+
+            // Elementos del DOM para modal Pago de Comisiones
+            const modalPagoComisiones = document.getElementById('modal-pago-comisiones');
+            const pagoComisionesBtn = document.getElementById('pago-comisiones-btn');
+            const cerrarModalComisionesBtn = document.getElementById('cerrar-modal-comisiones-btn');
+            const cancelarComisionesBtn = document.getElementById('cancelar-comisiones-btn');
+            const pagarComisionesBtn = document.getElementById('pagar-comisiones-btn');
+
+            // === MODAL CARGAR BENEFICIOS ===
+            if (cargarBeneficiosBtn && modalCargarBeneficios) {
+                // Abrir modal
+                cargarBeneficiosBtn.addEventListener('click', function() {
+                    modalCargarBeneficios.classList.remove('hidden');
+                });
+
+                // Cerrar modal
+                function cerrarModalBeneficios() {
+                    modalCargarBeneficios.classList.add('hidden');
+                    // Limpiar campos
+                    const montoBeneficios = document.getElementById('monto-beneficios');
+                    const tokenBeneficios = document.getElementById('token-beneficios');
+                    if (montoBeneficios) montoBeneficios.value = '';
+                    if (tokenBeneficios) tokenBeneficios.value = 'USDT';
+                }
+
+                if (cerrarModalBtn) {
+                    cerrarModalBtn.addEventListener('click', cerrarModalBeneficios);
+                }
+                if (cancelarModalBtn) {
+                    cancelarModalBtn.addEventListener('click', cerrarModalBeneficios);
+                }
+
+                // Cerrar modal al hacer clic fuera de él
+                modalCargarBeneficios.addEventListener('click', function(e) {
+                    if (e.target === modalCargarBeneficios) {
+                        cerrarModalBeneficios();
+                    }
+                });
+
+                // Manejar dispersión de beneficios
+                if (dispersarBeneficiosBtn) {
+                    dispersarBeneficiosBtn.addEventListener('click', function() {
+                        const montoBeneficios = document.getElementById('monto-beneficios');
+                        const tokenBeneficios = document.getElementById('token-beneficios');
+                        
+                        const monto = montoBeneficios ? montoBeneficios.value : '';
+                        const token = tokenBeneficios ? tokenBeneficios.value : 'USDT';
+                        
+                        if (!monto || parseFloat(monto) <= 0) {
+                            alert('Por favor ingresa un monto válido');
+                            return;
+                        }
+
+                        // Aquí se ejecutaría la lógica de dispersión
+                        alert(`Dispersión exitosa: ${monto} ${token} distribuidos`);
+                        cerrarModalBeneficios();
+                    });
+                }
+            }
+
+            // === MODAL MARCAR COMO PAGADO ===
+            if (marcarPagadoBtn && modalMarcarPagado) {
+                // Abrir modal
+                marcarPagadoBtn.addEventListener('click', function() {
+                    modalMarcarPagado.classList.remove('hidden');
+                });
+
+                // Cerrar modal
+                function cerrarModalPagado() {
+                    modalMarcarPagado.classList.add('hidden');
+                }
+
+                if (cerrarModalPagadoBtn) {
+                    cerrarModalPagadoBtn.addEventListener('click', cerrarModalPagado);
+                }
+                if (cancelarPagadoBtn) {
+                    cancelarPagadoBtn.addEventListener('click', cerrarModalPagado);
+                }
+
+                // Cerrar modal al hacer clic fuera de él
+                modalMarcarPagado.addEventListener('click', function(e) {
+                    if (e.target === modalMarcarPagado) {
+                        cerrarModalPagado();
+                    }
+                });
+
+                // Confirmar marcar como pagado
+                if (confirmarPagadoBtn) {
+                    confirmarPagadoBtn.addEventListener('click', function() {
+                        // Aquí se ejecutaría la lógica para marcar como pagado
+                        alert('Beneficios marcados como pagados exitosamente');
+                        cerrarModalPagado();
+                    });
+                }
+            }
+
+            // === MODAL REEMBOLSO DE CAPITAL ===
+            if (reembolsoBtn && modalReembolsoCapital) {
+                // Abrir modal
+                reembolsoBtn.addEventListener('click', function() {
+                    modalReembolsoCapital.classList.remove('hidden');
+                });
+
+                // Cerrar modal
+                function cerrarModalReembolso() {
+                    modalReembolsoCapital.classList.add('hidden');
+                    // Limpiar campos si es necesario
+                    const montoCapital = document.getElementById('monto-capital-reembolso');
+                    const montoBeneficios = document.getElementById('monto-beneficios-adicionales');
+                    const tokenCapital = document.getElementById('token-reembolso');
+                    if (montoCapital) montoCapital.value = '365000.00';
+                    if (montoBeneficios) montoBeneficios.value = '';
+                    if (tokenCapital) tokenCapital.value = 'USDT';
+                }
+
+                if (cerrarModalReembolsoBtn) {
+                    cerrarModalReembolsoBtn.addEventListener('click', cerrarModalReembolso);
+                }
+                if (cancelarReembolsoBtn) {
+                    cancelarReembolsoBtn.addEventListener('click', cerrarModalReembolso);
+                }
+
+                // Cerrar modal al hacer clic fuera de él
+                modalReembolsoCapital.addEventListener('click', function(e) {
+                    if (e.target === modalReembolsoCapital) {
+                        cerrarModalReembolso();
+                    }
+                });
+
+                // Confirmar reembolso de capital
+                if (confirmarReembolsoBtn) {
+                    confirmarReembolsoBtn.addEventListener('click', function() {
+                        const montoCapital = document.getElementById('monto-capital-reembolso');
+                        const montoBeneficios = document.getElementById('monto-beneficios-adicionales');
+                        const tokenCapital = document.getElementById('token-reembolso');
+                        
+                        const capital = montoCapital ? montoCapital.value : '';
+                        const beneficios = montoBeneficios ? montoBeneficios.value : '0';
+                        const token = tokenCapital ? tokenCapital.value : 'USDT';
+                        
+                        if (!capital || parseFloat(capital) <= 0) {
+                            alert('Por favor ingresa un monto de capital válido');
+                            return;
+                        }
+
+                        const totalReembolso = parseFloat(capital) + parseFloat(beneficios || '0');
+                        
+                        // Aquí se ejecutaría la lógica de reembolso de capital
+                        alert(`Reembolso de capital procesado exitosamente: ${totalReembolso} ${token}`);
+                        cerrarModalReembolso();
+                    });
+                }
+            }
+
+            // === MODAL PAGO DE COMISIONES ===
+            if (pagoComisionesBtn && modalPagoComisiones) {
+                // Abrir modal
+                pagoComisionesBtn.addEventListener('click', function() {
+                    modalPagoComisiones.classList.remove('hidden');
+                });
+
+                // Cerrar modal
+                function cerrarModalComisiones() {
+                    modalPagoComisiones.classList.add('hidden');
+                }
+
+                if (cerrarModalComisionesBtn) {
+                    cerrarModalComisionesBtn.addEventListener('click', cerrarModalComisiones);
+                }
+                if (cancelarComisionesBtn) {
+                    cancelarComisionesBtn.addEventListener('click', cerrarModalComisiones);
+                }
+
+                // Cerrar modal al hacer clic fuera de él
+                modalPagoComisiones.addEventListener('click', function(e) {
+                    if (e.target === modalPagoComisiones) {
+                        cerrarModalComisiones();
+                    }
+                });
+
+                // Confirmar pago de comisiones
+                if (pagarComisionesBtn) {
+                    pagarComisionesBtn.addEventListener('click', function() {
+                        const tipoComision = document.getElementById('tipo-comision');
+                        const montoComisiones = document.getElementById('monto-comisiones');
+                        const tokenComisiones = document.getElementById('token-comisiones');
+                        
+                        const tipo = tipoComision ? tipoComision.value : '';
+                        const monto = montoComisiones ? montoComisiones.value : '';
+                        const token = tokenComisiones ? tokenComisiones.value : 'USDT';
+                        
+                        if (!monto || parseFloat(monto) <= 0) {
+                            alert('Por favor ingresa un monto válido');
+                            return;
+                        }
+
+                        // Aquí se ejecutaría la lógica de pago de comisiones
+                        alert(`Pago de comisiones procesado exitosamente: ${monto} ${token} para ${tipo}`);
+                        cerrarModalComisiones();
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

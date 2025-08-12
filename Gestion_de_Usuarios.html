@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - Remitt Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación Admin -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+                <span class="ml-2 text-sm font-bold text-gray-700">Admin Panel</span>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_Proyectos_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_de_Usuarios.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Gestión de Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion_fees_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Configuración de Fees
+                    </a>
+                </li>
+                <li>
+                    <a href="Bolsas_internas_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Bolsas Internas
+                    </a>
+                </li>
+                <li>
+                    <a href="Entrega_de_Beneficios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Entrega de Beneficios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Admin Info -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-gray-100 p-3 rounded-lg text-center">
+                <p class="text-xs text-gray-500">Admin:</p>
+                <p class="text-sm font-medium">admin@remitt.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Admin -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt Admin</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden lg:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">5</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Título de Sección -->
+        <div class="px-6 py-6 bg-white border-b border-gray-300">
+            <div class="flex flex-col items-center text-center">
+                <!-- Imagen/Icono -->
+                <div class="w-16 h-16 bg-gray-300 rounded-lg flex items-center justify-center mb-4">
+                    <div class="w-8 h-8 bg-black rounded-md transform rotate-45"></div>
+                </div>
+                <!-- Título y Descripción -->
+                <h1 class="text-2xl font-bold text-black mb-2">Gestión de Usuarios</h1>
+                <p class="text-sm text-gray-500">Administra usuarios e inversionistas de la plataforma</p>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <main class="p-6">
+            <!-- Barra de Herramientas -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                    <!-- Búsqueda y Filtros -->
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                        <!-- Búsqueda -->
+                        <div class="relative">
+                            <input type="text" placeholder="Buscar usuarios..." 
+                                   class="w-full sm:w-80 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black">
+                        </div>
+                        
+                        <!-- Filtro por Estado KYC -->
+                        <select class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-black">
+                            <option>Todos los Estados KYC</option>
+                            <option>Verificado</option>
+                            <option>Pendiente</option>
+                            <option>No Completado</option>
+                            <option>Rechazado</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Métricas Rápidas -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-300">
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">1,247</p>
+                        <p class="text-sm text-gray-500">Total Usuarios</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">892</p>
+                        <p class="text-sm text-gray-500">KYC Verificados</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">215</p>
+                        <p class="text-sm text-gray-500">KYC Pendientes</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-black">156</p>
+                        <p class="text-sm text-gray-500">Registros Hoy</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lista de Usuarios -->
+            <section class="bg-white rounded-lg shadow-md">
+                <!-- Header de Tabla -->
+                <div class="px-6 py-4 border-b border-gray-300">
+                    <div class="grid grid-cols-9 gap-4 text-sm font-medium text-gray-700">
+                        <div class="col-span-3">Usuario</div>
+                        <div class="col-span-2">Estado KYC</div>
+                        <div class="col-span-1">Red</div>
+                        <div class="col-span-2">Registro</div>
+                        <div class="col-span-1">Acciones</div>
+                    </div>
+                </div>
+
+                <!-- Usuario 1 -->
+                <div class="px-6 py-4 border-b border-gray-300 hover:bg-gray-100 transition-colors">
+                    <div class="grid grid-cols-9 gap-4 items-center">
+                        <div class="col-span-3">
+                            <h3 class="font-bold text-black">0x742d...b48F</h3>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-black text-white px-3 py-1 rounded text-xs">Verificado</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-black font-medium text-sm">Sí</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-gray-700">15/12/2024</span>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex space-x-1">
+                                <button onclick="openTransactionModal('0x742d...b48F')" class="bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver transacciones">
+                                    TX
+                                </button>
+                                <button onclick="openNFTModal('0x742d...b48F')" class="bg-black text-white hover:bg-gray-700 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver NFTs">
+                                    NFTs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usuario 2 -->
+                <div class="px-6 py-4 border-b border-gray-300 hover:bg-gray-100 transition-colors">
+                    <div class="grid grid-cols-9 gap-4 items-center">
+                        <div class="col-span-3">
+                            <h3 class="font-bold text-black">0x8ba1...c84F</h3>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-500 text-white px-3 py-1 rounded text-xs">Pendiente</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-gray-500 font-medium text-sm">No</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-gray-700">22/12/2024</span>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex space-x-1">
+                                <button onclick="openTransactionModal('0x8ba1...c84F')" class="bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver transacciones">
+                                    TX
+                                </button>
+                                <button onclick="openNFTModal('0x8ba1...c84F')" class="bg-black text-white hover:bg-gray-700 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver NFTs">
+                                    NFTs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usuario 3 -->
+                <div class="px-6 py-4 border-b border-gray-300 hover:bg-gray-100 transition-colors">
+                    <div class="grid grid-cols-9 gap-4 items-center">
+                        <div class="col-span-3">
+                            <h3 class="font-bold text-black">0x96C1...e45b</h3>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-300 text-gray-700 px-3 py-1 rounded text-xs">No Completado</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-gray-500 font-medium text-sm">No</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-gray-700">10/1/2025</span>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex space-x-1">
+                                <button onclick="openTransactionModal('0x96C1...e45b')" class="bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver transacciones">
+                                    TX
+                                </button>
+                                <button onclick="openNFTModal('0x96C1...e45b')" class="bg-black text-white hover:bg-gray-700 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver NFTs">
+                                    NFTs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usuario 4 -->
+                <div class="px-6 py-4 border-b border-gray-300 hover:bg-gray-100 transition-colors">
+                    <div class="grid grid-cols-9 gap-4 items-center">
+                        <div class="col-span-3">
+                            <h3 class="font-bold text-black">0xd914...f18c</h3>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-black text-white px-3 py-1 rounded text-xs">Verificado</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-black font-medium text-sm">Sí</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-gray-700">8/11/2024</span>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex space-x-1">
+                                <button onclick="openTransactionModal('0xd914...f18c')" class="bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver transacciones">
+                                    TX
+                                </button>
+                                <button onclick="openNFTModal('0xd914...f18c')" class="bg-black text-white hover:bg-gray-700 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver NFTs">
+                                    NFTs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usuario 5 -->
+                <div class="px-6 py-4 border-b border-gray-300 hover:bg-gray-100 transition-colors">
+                    <div class="grid grid-cols-9 gap-4 items-center">
+                        <div class="col-span-3">
+                            <h3 class="font-bold text-black">0x3C44...d299e</h3>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="bg-gray-700 text-white px-3 py-1 rounded text-xs">Rechazado</span>
+                        </div>
+                        <div class="col-span-1">
+                            <span class="text-gray-500 font-medium text-sm">No</span>
+                        </div>
+                        <div class="col-span-2">
+                            <span class="text-gray-700">18/12/2024</span>
+                        </div>
+                        <div class="col-span-1">
+                            <div class="flex space-x-1">
+                                <button onclick="openTransactionModal('0x3C44...d299e')" class="bg-white border border-gray-300 hover:border-black hover:bg-gray-50 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver transacciones">
+                                    TX
+                                </button>
+                                <button onclick="openNFTModal('0x3C44...d299e')" class="bg-black text-white hover:bg-gray-700 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 shadow-sm" title="Ver NFTs">
+                                    NFTs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div class="px-6 py-4 border-t border-gray-300 flex justify-between items-center">
+                    <p class="text-sm text-gray-500">Mostrando 5 de 1,247 usuarios</p>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">Anterior</button>
+                        <button class="px-3 py-1 bg-black text-white rounded-md text-sm">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">3</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded-md text-sm hover:bg-gray-100 transition-colors">Siguiente</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de Transacciones -->
+    <div id="transactionModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-lg max-w-7xl w-full max-h-screen overflow-hidden">
+            <!-- Header del Modal -->
+            <div class="px-6 py-4 border-b border-gray-300 flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-bold text-black">Transacciones de Usuario</h2>
+                    <p class="text-sm text-gray-500" id="userWalletDisplay">Wallet: 0x742d...b48F</p>
+                </div>
+                <button onclick="closeTransactionModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            </div>
+
+            <!-- Contenido del Modal -->
+            <div class="p-6 max-h-96 overflow-y-auto">
+                <!-- Filtros y Controles -->
+                <div class="bg-gray-100 rounded-lg p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+                        <!-- Búsqueda -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Buscar</label>
+                            <input type="text" placeholder="Hash, proyecto..." class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500">
+                        </div>
+                        
+                        <!-- Tipo de Transacción -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tipo</label>
+                            <select class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500">
+                                <option>Todas</option>
+                                <option>Inversión</option>
+                                <option>Compra P2P</option>
+                                <option>Venta P2P</option>
+                                <option>Beneficios</option>
+                                <option>Comisiones</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Estado -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Estado</label>
+                            <select class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500">
+                                <option>Todos</option>
+                                <option>Completada</option>
+                                <option>Pendiente</option>
+                                <option>Fallida</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Fecha Desde -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Desde</label>
+                            <input type="date" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500">
+                        </div>
+                        
+                        <!-- Fecha Hasta -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Hasta</label>
+                            <input type="date" class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-gray-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Controles -->
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-300">
+                        <p class="text-sm text-gray-500">Mostrando 12 transacciones</p>
+                        <div class="flex space-x-3">
+                            <button class="text-sm text-gray-500 hover:text-gray-700">Limpiar filtros</button>
+                            <button class="bg-black text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors">
+                                Aplicar filtros
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de Transacciones -->
+                <div class="bg-white rounded-lg border border-gray-300 overflow-hidden">
+                    <!-- Header de la tabla -->
+                    <div class="bg-gray-100 px-6 py-3 border-b border-gray-300">
+                        <div class="grid grid-cols-7 gap-4 text-sm font-medium text-gray-700">
+                            <div>Fecha</div>
+                            <div>Tipo</div>
+                            <div>Proyecto</div>
+                            <div>Monto</div>
+                            <div>Comisión</div>
+                            <div>Estado</div>
+                            <div>Acciones</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transacciones -->
+                    <div class="divide-y divide-gray-300">
+                        <!-- Transacción 1 -->
+                        <div class="px-6 py-4 hover:bg-gray-100 transition-colors">
+                            <div class="grid grid-cols-7 gap-4 items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">15 Ene 2025</p>
+                                    <p class="text-xs text-gray-500">14:32</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-black text-white">
+                                        Inversión
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">Complejo El Retiro</p>
+                                    <p class="text-xs text-gray-500">Medellín</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">1,000.00 USDT</p>
+                                    <p class="text-xs text-gray-500">+ NFT recibido</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-700">50.00 USDT</p>
+                                    <p class="text-xs text-gray-500">5% + 1 USDT gas</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Completada
+                                    </span>
+                                </div>
+                                <div>
+                                    <button onclick="toggleTransactionDetails('tx1')" class="text-sm text-gray-500 hover:text-gray-700">Ver detalles</button>
+                                </div>
+                            </div>
+                            <!-- Detalles Expandibles -->
+                            <div id="tx1" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles de la Transacción</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-500">Hash de Transacción:</p>
+                                        <p class="font-medium text-gray-700">0x8ba12f...d4e9a2</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Bloque:</p>
+                                        <p class="font-medium text-gray-700">#42,871,293</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Gas Usado:</p>
+                                        <p class="font-medium text-gray-700">187,432 gwei</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">ID del NFT:</p>
+                                        <p class="font-medium text-gray-700">#RET-001-456</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Confirmaciones:</p>
+                                        <p class="font-medium text-gray-700">24,847</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Red:</p>
+                                        <p class="font-medium text-gray-700">BSC Mainnet</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Contrato del Proyecto:</p>
+                                        <p class="font-medium text-gray-700">0x9c4A...8f2D</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Comisión Remitt:</p>
+                                        <p class="font-medium text-gray-700">49.00 USDT (4.9%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Gas Fee:</p>
+                                        <p class="font-medium text-gray-700">1.00 USDT</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transacción 2 -->
+                        <div class="px-6 py-4 hover:bg-gray-100 transition-colors">
+                            <div class="grid grid-cols-7 gap-4 items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">12 Ene 2025</p>
+                                    <p class="text-xs text-gray-500">09:15</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Venta P2P
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">Torre Empresarial Centro</p>
+                                    <p class="text-xs text-gray-500">Medellín</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">920.50 USDT</p>
+                                    <p class="text-xs text-gray-500">- NFT vendido</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-700">29.50 USDT</p>
+                                    <p class="text-xs text-gray-500">3% + 1 USDT gas</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Completada
+                                    </span>
+                                </div>
+                                <div>
+                                    <button onclick="toggleTransactionDetails('tx2')" class="text-sm text-gray-500 hover:text-gray-700">Ver detalles</button>
+                                </div>
+                            </div>
+                            <!-- Detalles Expandibles -->
+                            <div id="tx2" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles de la Transacción P2P</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-500">Hash de Transacción:</p>
+                                        <p class="font-medium text-gray-700">0x7c3f8a...b9e1c5</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Bloque:</p>
+                                        <p class="font-medium text-gray-700">#42,765,188</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Gas Usado:</p>
+                                        <p class="font-medium text-gray-700">152,891 gwei</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">NFT Vendido:</p>
+                                        <p class="font-medium text-gray-700">#TEC-002-789</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Comprador:</p>
+                                        <p class="font-medium text-gray-700">0x4a8B...3d2F</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Precio Original:</p>
+                                        <p class="font-medium text-gray-700">950.00 USDT</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Marketplace Fee:</p>
+                                        <p class="font-medium text-gray-700">28.50 USDT (3.1%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Tiempo en Marketplace:</p>
+                                        <p class="font-medium text-gray-700">14 días</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Estado del NFT:</p>
+                                        <p class="font-medium text-gray-700">Transferido</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transacción 3 -->
+                        <div class="px-6 py-4 hover:bg-gray-100 transition-colors">
+                            <div class="grid grid-cols-7 gap-4 items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">08 Ene 2025</p>
+                                    <p class="text-xs text-gray-500">16:45</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-500 text-white">
+                                        Compra P2P
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">Residencial Vista Mar</p>
+                                    <p class="text-xs text-gray-500">Cartagena</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">970.00 USDT</p>
+                                    <p class="text-xs text-gray-500">+ NFT recibido</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-700">30.10 USDT</p>
+                                    <p class="text-xs text-gray-500">3% + 1 USDT gas</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Completada
+                                    </span>
+                                </div>
+                                <div>
+                                    <button onclick="toggleTransactionDetails('tx3')" class="text-sm text-gray-500 hover:text-gray-700">Ver detalles</button>
+                                </div>
+                            </div>
+                            <!-- Detalles Expandibles -->
+                            <div id="tx3" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles de Compra P2P</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-500">Hash de Transacción:</p>
+                                        <p class="font-medium text-gray-700">0x1e4d7b...c6a9f8</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Bloque:</p>
+                                        <p class="font-medium text-gray-700">#42,698,442</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Gas Usado:</p>
+                                        <p class="font-medium text-gray-700">164,253 gwei</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">NFT Adquirido:</p>
+                                        <p class="font-medium text-gray-700">#VIM-001-234</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Vendedor:</p>
+                                        <p class="font-medium text-gray-700">0x9f2A...8e1C</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Precio Listado:</p>
+                                        <p class="font-medium text-gray-700">1,000.00 USDT</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Descuento Obtenido:</p>
+                                        <p class="font-medium text-gray-700">30.00 USDT (3%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Fee de Compra:</p>
+                                        <p class="font-medium text-gray-700">29.10 USDT (3%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">ROI Proyectado:</p>
+                                        <p class="font-medium text-gray-700">22.5% anual</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transacción 4 -->
+                        <div class="px-6 py-4 hover:bg-gray-100 transition-colors">
+                            <div class="grid grid-cols-7 gap-4 items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">05 Ene 2025</p>
+                                    <p class="text-xs text-gray-500">11:20</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-300 text-gray-700">
+                                        Beneficios
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">Centro Comercial Norte</p>
+                                    <p class="text-xs text-gray-500">Bogotá</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">125.40 USDT</p>
+                                    <p class="text-xs text-gray-500">Distribución Q4</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-700">6.27 USDT</p>
+                                    <p class="text-xs text-gray-500">5% beneficios</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Completada
+                                    </span>
+                                </div>
+                                <div>
+                                    <button onclick="toggleTransactionDetails('tx4')" class="text-sm text-gray-500 hover:text-gray-700">Ver detalles</button>
+                                </div>
+                            </div>
+                            <!-- Detalles Expandibles -->
+                            <div id="tx4" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles de Distribución de Beneficios</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-500">Hash de Distribución:</p>
+                                        <p class="font-medium text-gray-700">0xa8c3f2...e7b4d9</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Bloque:</p>
+                                        <p class="font-medium text-gray-700">#42,612,857</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Período:</p>
+                                        <p class="font-medium text-gray-700">Q4 2024</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">NFT Involucrado:</p>
+                                        <p class="font-medium text-gray-700">#CCN-003-567</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">% de Participación:</p>
+                                        <p class="font-medium text-gray-700">0.85%</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Beneficio Total Proyecto:</p>
+                                        <p class="font-medium text-gray-700">14,753.50 USDT</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Beneficio Bruto:</p>
+                                        <p class="font-medium text-gray-700">131.67 USDT</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Comisión Remitt:</p>
+                                        <p class="font-medium text-gray-700">6.27 USDT (5%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Beneficio Neto:</p>
+                                        <p class="font-medium text-gray-700">125.40 USDT</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transacción 5 -->
+                        <div class="px-6 py-4 hover:bg-gray-100 transition-colors">
+                            <div class="grid grid-cols-7 gap-4 items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">03 Ene 2025</p>
+                                    <p class="text-xs text-gray-500">13:58</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-black text-white">
+                                        Inversión
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">Hotel Boutique Zona Rosa</p>
+                                    <p class="text-xs text-gray-500">Cali</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">2,000.00 USDT</p>
+                                    <p class="text-xs text-gray-500">+ NFT recibido</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-700">101.00 USDT</p>
+                                    <p class="text-xs text-gray-500">5% + 1 USDT gas</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-300 text-gray-700">
+                                        Pendiente
+                                    </span>
+                                </div>
+                                <div>
+                                    <button onclick="toggleTransactionDetails('tx5')" class="text-sm text-gray-500 hover:text-gray-700">Ver detalles</button>
+                                </div>
+                            </div>
+                            <!-- Detalles Expandibles -->
+                            <div id="tx5" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles de Inversión (Pendiente)</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-500">Hash de Transacción:</p>
+                                        <p class="font-medium text-gray-700">0x5f8a2c...d1e6b3</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Estado Blockchain:</p>
+                                        <p class="font-medium text-orange-600">Confirmando (8/24)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Gas Estimado:</p>
+                                        <p class="font-medium text-gray-700">203,547 gwei</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">NFT a Recibir:</p>
+                                        <p class="font-medium text-gray-700">#HBZ-001-890</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Tiempo Estimado:</p>
+                                        <p class="font-medium text-gray-700">~5 minutos</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Progreso Fondeo:</p>
+                                        <p class="font-medium text-gray-700">87% (435,000/500,000)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">ROI Proyectado:</p>
+                                        <p class="font-medium text-gray-700">24.8% anual</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Comisión de Entrada:</p>
+                                        <p class="font-medium text-gray-700">100.00 USDT (5%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Duración Proyecto:</p>
+                                        <p class="font-medium text-gray-700">18 meses</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transacción 6 -->
+                        <div class="px-6 py-4 hover:bg-gray-100 transition-colors">
+                            <div class="grid grid-cols-7 gap-4 items-center">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">28 Dic 2024</p>
+                                    <p class="text-xs text-gray-500">08:45</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Venta P2P
+                                    </span>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">Oficinas Corporate Plaza</p>
+                                    <p class="text-xs text-gray-500">Barranquilla</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-700">1,455.50 USDT</p>
+                                    <p class="text-xs text-gray-500">- NFT vendido</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-700">44.67 USDT</p>
+                                    <p class="text-xs text-gray-500">3% + 1 USDT gas</p>
+                                </div>
+                                <div>
+                                    <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-700 text-white">
+                                        Completada
+                                    </span>
+                                </div>
+                                <div>
+                                    <button onclick="toggleTransactionDetails('tx6')" class="text-sm text-gray-500 hover:text-gray-700">Ver detalles</button>
+                                </div>
+                            </div>
+                            <!-- Detalles Expandibles -->
+                            <div id="tx6" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                                <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles de Venta P2P</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                    <div>
+                                        <p class="text-gray-500">Hash de Transacción:</p>
+                                        <p class="font-medium text-gray-700">0x2b9d8f...a4c7e1</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Bloque:</p>
+                                        <p class="font-medium text-gray-700">#42,387,926</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Gas Usado:</p>
+                                        <p class="font-medium text-gray-700">198,734 gwei</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">NFT Vendido:</p>
+                                        <p class="font-medium text-gray-700">#OCP-004-123</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Comprador:</p>
+                                        <p class="font-medium text-gray-700">0x7e3B...9a5F</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Precio Original Compra:</p>
+                                        <p class="font-medium text-gray-700">1,500.00 USDT</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Ganancia/Pérdida:</p>
+                                        <p class="font-medium text-red-600">-44.50 USDT (-3%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Fee Marketplace:</p>
+                                        <p class="font-medium text-gray-700">43.67 USDT (3%)</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-500">Tiempo Tenencia:</p>
+                                        <p class="font-medium text-gray-700">6 meses, 12 días</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div class="flex items-center justify-between mt-6">
+                    <p class="text-sm text-gray-500">Mostrando 1-6 de 12 transacciones</p>
+                    <div class="flex items-center space-x-2">
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm text-gray-500">Anterior</button>
+                        <button class="px-3 py-1 bg-black text-white rounded text-sm">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm text-gray-700">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm text-gray-700">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="px-6 py-4 border-t border-gray-300 bg-gray-100 flex justify-end">
+                <button onclick="closeTransactionModal()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de NFTs/Participaciones -->
+    <div id="nftModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-lg max-w-7xl w-full max-h-screen overflow-hidden">
+            <!-- Header del Modal -->
+            <div class="px-6 py-4 border-b border-gray-300 flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-bold text-black">Participaciones NFT del Usuario</h2>
+                    <p class="text-sm text-gray-500" id="userNFTWalletDisplay">Wallet: 0x742d...b48F</p>
+                </div>
+                <button onclick="closeNFTModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            </div>
+
+            <!-- Contenido del Modal -->
+            <div class="p-6 max-h-96 overflow-y-auto">
+                <!-- Controles de filtrado y búsqueda -->
+                <div class="bg-gray-100 rounded-lg p-6 mb-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <h3 class="text-lg font-bold mb-4 md:mb-0">Mis Participaciones NFT</h3>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
+                            <!-- Búsqueda -->
+                            <div class="relative">
+                                <input 
+                                    type="text" 
+                                    placeholder="Buscar proyecto..." 
+                                    class="pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                                >
+                                <div class="absolute left-3 top-2.5 w-4 h-4 bg-gray-300 rounded"></div>
+                            </div>
+                            
+                            <!-- Filtro por estado -->
+                            <select class="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black">
+                                <option>Todos los estados</option>
+                                <option>Activo</option>
+                                <option>Completado</option>
+                                <option>En fondeo</option>
+                                <option>En Venta</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Métricas rápidas -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-4 border-t border-gray-300">
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-black">7</p>
+                            <p class="text-xs text-gray-500">NFTs Activos</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-black">3</p>
+                            <p class="text-xs text-gray-500">En Venta</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-black">5,425 USDT</p>
+                            <p class="text-xs text-gray-500">Total Invertido</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-bold text-black">+14.2%</p>
+                            <p class="text-xs text-gray-500">ROI Promedio</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de NFTs -->
+                <div class="space-y-4">
+                    <!-- NFT Item 1 -->
+                    <div class="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-16 h-16 bg-gray-300 rounded-md mr-4 flex items-center justify-center">
+                                    <span class="text-gray-500 text-xs">IMG</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Residencial Los Álamos</h3>
+                                    <p class="text-sm text-gray-500 mb-1">Medellín, Colombia</p>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Activo</span>
+                                        <span class="text-sm font-medium">NFT #001234</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <p class="text-xs text-gray-500">Invertido</p>
+                                    <p class="font-bold">500 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">ROI Actual</p>
+                                    <p class="font-bold text-gray-700">+12.5%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Ganancias</p>
+                                    <p class="font-bold">562.5 USDT</p>
+                                </div>
+                                <div>
+                                    <button onclick="toggleNFTDetails('nft1')" class="bg-gray-100 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-200 transition-colors">
+                                        Ver Detalles
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Detalles Expandibles -->
+                        <div id="nft1" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                            <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles del NFT</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-500">Fecha de Compra:</p>
+                                    <p class="font-medium text-gray-700">15 Ago 2024</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Precio Compra:</p>
+                                    <p class="font-medium text-gray-700">500.00 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Valor Actual:</p>
+                                    <p class="font-medium text-gray-700">562.50 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Comisión Pagada:</p>
+                                    <p class="font-medium text-gray-700">26.00 USDT (5% + gas)</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Beneficios Recibidos:</p>
+                                    <p class="font-medium text-gray-700">62.50 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Próxima Distribución:</p>
+                                    <p class="font-medium text-gray-700">15 Feb 2025</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                                    Poner en Venta
+                                </button>
+                                <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-400 transition-colors">
+                                    Ver Proyecto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- NFT Item 2 -->
+                    <div class="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-16 h-16 bg-gray-300 rounded-md mr-4 flex items-center justify-center">
+                                    <span class="text-gray-500 text-xs">IMG</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Condominio Costa Azul</h3>
+                                    <p class="text-sm text-gray-500 mb-1">Punta del Este, Uruguay</p>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Activo</span>
+                                        <span class="text-sm font-medium">NFT #001235</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <p class="text-xs text-gray-500">Invertido</p>
+                                    <p class="font-bold">750 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">ROI Actual</p>
+                                    <p class="font-bold text-gray-700">+18.2%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Ganancias</p>
+                                    <p class="font-bold">886.5 USDT</p>
+                                </div>
+                                <div>
+                                    <button onclick="toggleNFTDetails('nft2')" class="bg-gray-100 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-200 transition-colors">
+                                        Ver Detalles
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Detalles Expandibles -->
+                        <div id="nft2" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                            <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles del NFT</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-500">Fecha de Compra:</p>
+                                    <p class="font-medium text-gray-700">22 Jul 2024</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Precio Compra:</p>
+                                    <p class="font-medium text-gray-700">750.00 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Valor Actual:</p>
+                                    <p class="font-medium text-gray-700">886.50 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Comisión Pagada:</p>
+                                    <p class="font-medium text-gray-700">38.50 USDT (5% + gas)</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Beneficios Recibidos:</p>
+                                    <p class="font-medium text-gray-700">136.50 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Próxima Distribución:</p>
+                                    <p class="font-medium text-gray-700">22 Feb 2025</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                                    Poner en Venta
+                                </button>
+                                <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-400 transition-colors">
+                                    Ver Proyecto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- NFT Item 3 - EN VENTA -->
+                    <div class="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-16 h-16 bg-gray-300 rounded-md mr-4 flex items-center justify-center">
+                                    <span class="text-gray-500 text-xs">IMG</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Plaza Comercial Norte</h3>
+                                    <p class="text-sm text-gray-500 mb-1">Bogotá, Colombia</p>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="bg-gray-300 text-gray-700 px-2 py-1 rounded text-xs">En Venta</span>
+                                        <span class="text-sm font-medium">NFT #001236</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <p class="text-xs text-gray-500">Invertido</p>
+                                    <p class="font-bold">300 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">ROI Actual</p>
+                                    <p class="font-bold text-gray-700">+8.5%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Precio Venta</p>
+                                    <p class="font-bold">295 USDT</p>
+                                </div>
+                                <div>
+                                    <button onclick="toggleNFTDetails('nft3')" class="bg-gray-100 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-200 transition-colors">
+                                        Ver Detalles
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Detalles Expandibles -->
+                        <div id="nft3" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                            <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles del NFT (En Venta)</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-500">Fecha de Compra:</p>
+                                    <p class="font-medium text-gray-700">10 Sep 2024</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Precio Compra:</p>
+                                    <p class="font-medium text-gray-700">300.00 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Precio de Venta:</p>
+                                    <p class="font-medium text-gray-700">295.00 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">En Venta Desde:</p>
+                                    <p class="font-medium text-gray-700">20 Ene 2025</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Ofertas Recibidas:</p>
+                                    <p class="font-medium text-gray-700">3 ofertas</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Mejor Oferta:</p>
+                                    <p class="font-medium text-gray-700">290.00 USDT</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="bg-red-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-700 transition-colors">
+                                    Retirar de Venta
+                                </button>
+                                <button class="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                                    Ver Ofertas
+                                </button>
+                                <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-400 transition-colors">
+                                    Editar Precio
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- NFT Item 4 -->
+                    <div class="border border-gray-300 rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-16 h-16 bg-gray-300 rounded-md mr-4 flex items-center justify-center">
+                                    <span class="text-gray-500 text-xs">IMG</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Edificio Empresarial Sur</h3>
+                                    <p class="text-sm text-gray-500 mb-1">Santiago, Chile</p>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Activo</span>
+                                        <span class="text-sm font-medium">NFT #001237</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                <div>
+                                    <p class="text-xs text-gray-500">Invertido</p>
+                                    <p class="font-bold">850 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">ROI Actual</p>
+                                    <p class="font-bold text-gray-700">+14.2%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500">Ganancias</p>
+                                    <p class="font-bold">970.7 USDT</p>
+                                </div>
+                                <div>
+                                    <button onclick="toggleNFTDetails('nft4')" class="bg-gray-100 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-200 transition-colors">
+                                        Ver Detalles
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Detalles Expandibles -->
+                        <div id="nft4" class="hidden mt-4 p-4 bg-gray-100 rounded-lg border border-gray-300">
+                            <h4 class="font-bold text-sm text-gray-700 mb-3">Detalles del NFT</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-500">Fecha de Compra:</p>
+                                    <p class="font-medium text-gray-700">05 Jun 2024</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Precio Compra:</p>
+                                    <p class="font-medium text-gray-700">850.00 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Valor Actual:</p>
+                                    <p class="font-medium text-gray-700">970.70 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Comisión Pagada:</p>
+                                    <p class="font-medium text-gray-700">43.50 USDT (5% + gas)</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Beneficios Recibidos:</p>
+                                    <p class="font-medium text-gray-700">120.70 USDT</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-500">Próxima Distribución:</p>
+                                    <p class="font-medium text-gray-700">05 Mar 2025</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex space-x-3">
+                                <button class="bg-black text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                                    Poner en Venta
+                                </button>
+                                <button class="bg-gray-300 text-gray-700 px-4 py-2 rounded text-sm font-medium hover:bg-gray-400 transition-colors">
+                                    Ver Proyecto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-300">
+                    <p class="text-sm text-gray-500">Mostrando 4 de 10 participaciones</p>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm text-gray-500">Anterior</button>
+                        <button class="px-3 py-1 bg-black text-white rounded text-sm">1</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">2</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">3</button>
+                        <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="px-6 py-4 border-t border-gray-300 bg-gray-100 flex justify-end">
+                <button onclick="closeNFTModal()" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript básico para el modal (solo para wireframe) -->
+    <script>
+        function openTransactionModal(walletAddress) {
+            document.getElementById('transactionModal').classList.remove('hidden');
+            document.getElementById('userWalletDisplay').textContent = 'Wallet: ' + walletAddress;
+        }
+
+        function closeTransactionModal() {
+            document.getElementById('transactionModal').classList.add('hidden');
+            // Cerrar todos los detalles expandidos cuando se cierra el modal
+            const details = document.querySelectorAll('[id^="tx"]');
+            details.forEach(detail => {
+                detail.classList.add('hidden');
+            });
+        }
+
+        function toggleTransactionDetails(transactionId) {
+            const detailElement = document.getElementById(transactionId);
+            if (detailElement.classList.contains('hidden')) {
+                detailElement.classList.remove('hidden');
+            } else {
+                detailElement.classList.add('hidden');
+            }
+        }
+
+        function openNFTModal(walletAddress) {
+            document.getElementById('nftModal').classList.remove('hidden');
+            document.getElementById('userNFTWalletDisplay').textContent = 'Wallet: ' + walletAddress;
+        }
+
+        function closeNFTModal() {
+            document.getElementById('nftModal').classList.add('hidden');
+            // Cerrar todos los detalles expandidos cuando se cierra el modal
+            const nftDetails = document.querySelectorAll('[id^="nft"]');
+            nftDetails.forEach(detail => {
+                detail.classList.add('hidden');
+            });
+        }
+
+        function toggleNFTDetails(nftId) {
+            const detailElement = document.getElementById(nftId);
+            if (detailElement.classList.contains('hidden')) {
+                detailElement.classList.remove('hidden');
+            } else {
+                detailElement.classList.add('hidden');
+            }
+        }
+
+        // Cerrar modal al hacer clic en el overlay
+        document.getElementById('transactionModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTransactionModal();
+            }
+        });
+
+        document.getElementById('nftModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeNFTModal();
+            }
+        });
+    </script>
+</body>
+</html>

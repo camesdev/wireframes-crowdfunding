@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Transacciones - Remitt Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación Admin -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+                <span class="ml-2 text-sm font-bold text-gray-700">Admin Panel</span>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_Proyectos_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_de_Usuarios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion_fees_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Configuración de Fees
+                    </a>
+                </li>
+                <li>
+                    <a href="Bolsas_internas_Admin.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Bolsas Internas
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Admin Info -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-gray-100 p-3 rounded-lg text-center">
+                <p class="text-xs text-gray-500">Admin:</p>
+                <p class="text-sm font-medium">admin@remitt.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Admin -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt Admin</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden lg:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">3</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-6">
+                <a href="Bolsas_internas_Admin.html" class="hover:text-gray-700">← Volver a Bolsas Internas</a>
+            </nav>
+
+            <!-- Header del Historial -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-black mb-2">Historial de Transacciones</h1>
+                    <p class="text-gray-500 text-lg">Registro completo de movimientos en las bolsas internas</p>
+                </div>
+            </section>
+
+            <!-- Tabla de Transacciones -->
+            <section class="bg-white rounded-lg shadow-md">
+                <div class="p-6 border-b border-gray-300">
+                    <h2 class="text-xl font-bold">Transacciones Recientes</h2>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha/Hora</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hash</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bolsa</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monto</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-300">
+                            <!-- Transacción 1 -->
+                            <tr class="hover:bg-gray-100">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-medium">27/01/2025</p>
+                                        <p class="text-gray-500">14:32:15</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="font-mono text-xs">0x1a2b3c...def456</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    Fee Remitt
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="text-black">Entrada</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-bold text-black">+1,250.00</p>
+                                        <p class="text-gray-500">USDT</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                        Completada
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Transacción 2 -->
+                            <tr class="hover:bg-gray-100">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-medium">27/01/2025</p>
+                                        <p class="text-gray-500">13:45:22</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="font-mono text-xs">0x2b3c4d...789abc</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    Operaciones
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="text-gray-500">Salida</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-bold text-gray-500">-750.50</p>
+                                        <p class="text-gray-500">USDC</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                        Completada
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Transacción 3 -->
+                            <tr class="hover:bg-gray-100">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-medium">27/01/2025</p>
+                                        <p class="text-gray-500">12:18:09</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="font-mono text-xs">0x3c4d5e...123def</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    Red Afiliados
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="text-black">Entrada</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-bold text-black">+456.25</p>
+                                        <p class="text-gray-500">USDT</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs font-medium bg-gray-500 text-white rounded">
+                                        Pendiente
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Transacción 4 -->
+                            <tr class="hover:bg-gray-100">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-medium">27/01/2025</p>
+                                        <p class="text-gray-500">11:05:33</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="font-mono text-xs">0x4d5e6f...456789</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    Gas Fees
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="text-black">Entrada</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-bold text-black">+125.75</p>
+                                        <p class="text-gray-500">USDT</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                        Completada
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Transacción 5 -->
+                            <tr class="hover:bg-gray-100">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-medium">26/01/2025</p>
+                                        <p class="text-gray-500">18:42:17</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="font-mono text-xs">0x5e6f7a...890123</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    Fee Remitt
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <span class="text-gray-500">Salida</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    <div>
+                                        <p class="font-bold text-gray-500">-2,000.00</p>
+                                        <p class="text-gray-500">USDC</p>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 py-1 text-xs font-medium bg-black text-white rounded">
+                                        Completada
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginación -->
+                <div class="px-6 py-4 bg-gray-100 border-t border-gray-300">
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            Mostrando transacciones recientes
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                Anterior
+                            </button>
+                            <button class="px-3 py-1 text-sm bg-black text-white border border-black rounded-md">
+                                1
+                            </button>
+                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                2
+                            </button>
+                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                3
+                            </button>
+                            <span class="px-2 text-sm text-gray-500">...</span>
+                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                250
+                            </button>
+                            <button class="px-3 py-1 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition-colors">
+                                Siguiente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Admin -->
+        <footer class="bg-white border-t border-gray-300 py-6 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">
+                    © 2025 Remitt Admin Panel. Historial completo de transacciones del ecosistema.
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

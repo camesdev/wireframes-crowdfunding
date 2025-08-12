@@ -1,0 +1,281 @@
+<!-- MODAL COMPRAR PARTICIPACIÓN -->
+    <div id="modalComprarParticipacion" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-lg w-full p-6">
+                <!-- Header Modal -->
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-gray-700">Comprar Participación</h3>
+                    <button id="closeModalComprar" class="text-gray-500 hover:text-gray-700">
+                        <div class="w-6 h-6 flex items-center justify-center">✕</div>
+                    </button>
+                </div>
+                
+                <!-- Información del Proyecto -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 id="nombreProyecto" class="font-medium text-gray-700">Torre Empresarial Centro</h4>
+                        <span id="estadoProyecto" class="text-xs bg-black text-white px-2 py-1 rounded">En Construcción</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="text-gray-500">Ubicación:</span>
+                            <span id="ubicacionProyecto" class="text-gray-700 font-medium ml-2">Medellín</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500">ROI proyectado:</span>
+                            <span id="roiProyecto" class="text-gray-700 font-medium ml-2">22.3%</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500">Tiempo restante:</span>
+                            <span id="tiempoProyecto" class="text-gray-700 font-medium ml-2">18 meses</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500">Vendedor:</span>
+                            <span id="vendedorProyecto" class="text-gray-700 font-medium ml-2">0x7A2f...9B4c</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Precio y Descuento -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm text-gray-500">Precio de la participación</span>
+                        <span id="descuentoInfo" class="text-xs bg-gray-700 text-white px-2 py-1 rounded">-8% desc.</span>
+                    </div>
+                    <div class="text-center">
+                        <div id="precioVenta" class="text-3xl font-bold text-black mb-1">$2,300 USDT</div>
+                        <div id="precioOriginal" class="text-sm text-gray-500 line-through">Precio original: $2,500 USDT</div>
+                        <div class="text-sm text-gray-700 mt-1">Ahorro: <span id="ahorroTotal" class="font-medium">$200 USDT</span></div>
+                    </div>
+                </div>
+                
+                <!-- Resumen de Compra -->
+                <div class="bg-gray-100 p-4 rounded-lg mb-6 space-y-2">
+                    <h4 class="font-medium text-gray-700 mb-3">Resumen de Compra</h4>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Precio de participación:</span>
+                        <span class="text-gray-700" id="resumenPrecio">2,300.00 USDT</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Comisión P2P (2%):</span>
+                        <span class="text-gray-700" id="resumenComision">46.00 USDT</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Gas Fee:</span>
+                        <span class="text-gray-700">1.00 USDT</span>
+                    </div>
+                    <div class="border-t border-gray-300 pt-2 mt-2">
+                        <div class="flex justify-between font-medium">
+                            <span class="text-gray-700">Total a pagar:</span>
+                            <span class="text-gray-700" id="totalPagar">2,347.00 USDT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Verificación de Saldo -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center p-3 bg-gray-100 rounded-lg">
+                        <span class="text-sm text-gray-700">Tu saldo actual:</span>
+                        <span class="font-medium text-gray-700">2,450.00 USDT</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-2 text-sm">
+                        <span class="text-gray-500">Saldo después de compra:</span>
+                        <span class="font-medium text-gray-700" id="saldoRestante">103.00 USDT</span>
+                    </div>
+                </div>
+                
+                <!-- Términos y Condiciones -->
+                <div class="mb-6">
+                    <label class="flex items-start space-x-3">
+                        <input type="checkbox" id="checkboxTerminos" class="mt-1 border-gray-300 rounded">
+                        <span class="text-xs text-gray-500 leading-relaxed">
+                            Acepto los términos y condiciones de la compra P2P. Entiendo que estoy comprando una participación 
+                            de otro usuario y que los rendimientos proyectados no están garantizados.
+                        </span>
+                    </label>
+                </div>
+                
+                <!-- Botones de Acción -->
+                <div class="grid grid-cols-2 gap-3">
+                    <button id="cancelComprar" class="bg-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-400 transition-colors">
+                        Cancelar
+                    </button>
+                    <button id="confirmarCompra" class="bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
+                        Confirmar Compra
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript para Modales -->
+    <script>
+        // Data de las participaciones para la modal
+        const participacionesData = {
+            'Torre Empresarial Centro': {
+                estado: 'En Construcción',
+                estadoColor: 'bg-black',
+                ubicacion: 'Medellín',
+                roi: '22.3%',
+                tiempo: '18 meses',
+                vendedor: '0x7A2f...9B4c',
+                precioVenta: '2,300',
+                precioOriginal: '2,500',
+                descuento: '8%'
+            },
+            'Residencial Vista Mar': {
+                estado: 'Próximo a Completar',
+                estadoColor: 'bg-gray-700',
+                ubicacion: 'Cartagena',
+                roi: '18.5%',
+                tiempo: '6 meses',
+                vendedor: '0x1B9c...3F2a',
+                precioVenta: '970',
+                precioOriginal: '1,000',
+                descuento: '3%'
+            },
+            'Centro Comercial Norte': {
+                estado: 'En Fondeo',
+                estadoColor: 'bg-black',
+                ubicacion: 'Bogotá',
+                roi: '25.7%',
+                tiempo: '36 meses',
+                vendedor: '0x8D4e...1A7f',
+                precioVenta: '425',
+                precioOriginal: '500',
+                descuento: '15%'
+            },
+            'Complejo El Retiro': {
+                estado: 'En Construcción',
+                estadoColor: 'bg-black',
+                ubicacion: 'Medellín',
+                roi: '18.5%',
+                tiempo: '23 meses',
+                vendedor: '0x3C5d...8E9b',
+                precioVenta: '950',
+                precioOriginal: '1,000',
+                descuento: '5%'
+            },
+            'Hotel Boutique Zona Rosa': {
+                estado: 'En Fondeo',
+                estadoColor: 'bg-black',
+                ubicacion: 'Cali',
+                roi: '20.8%',
+                tiempo: '28 meses',
+                vendedor: '0x6F8a...4D2c',
+                precioVenta: '1,760',
+                precioOriginal: '2,000',
+                descuento: '12%'
+            },
+            'Oficinas Corporate Plaza': {
+                estado: 'Próximo a Completar',
+                estadoColor: 'bg-gray-700',
+                ubicacion: 'Barranquilla',
+                roi: '19.2%',
+                tiempo: '4 meses',
+                vendedor: '0x9E2b...7C5f',
+                precioVenta: '1,485',
+                precioOriginal: '1,500',
+                descuento: '1%'
+            }
+        };
+
+        // Modal Vender Participación
+        document.getElementById('btnVenderParticipacion').addEventListener('click', function() {
+            document.getElementById('modalVenderParticipacion').classList.remove('hidden');
+        });
+        
+        document.getElementById('closeModalVender').addEventListener('click', function() {
+            document.getElementById('modalVenderParticipacion').classList.add('hidden');
+        });
+        
+        document.getElementById('cancelVender').addEventListener('click', function() {
+            document.getElementById('modalVenderParticipacion').classList.add('hidden');
+        });
+        
+        // Modal Comprar Participación
+        function abrirModalCompra(nombreProyecto) {
+            const data = participacionesData[nombreProyecto];
+            if (!data) return;
+            
+            // Actualizar información del proyecto
+            document.getElementById('nombreProyecto').textContent = nombreProyecto;
+            document.getElementById('estadoProyecto').textContent = data.estado;
+            document.getElementById('estadoProyecto').className = `text-xs ${data.estadoColor} text-white px-2 py-1 rounded`;
+            document.getElementById('ubicacionProyecto').textContent = data.ubicacion;
+            document.getElementById('roiProyecto').textContent = data.roi;
+            document.getElementById('tiempoProyecto').textContent = data.tiempo;
+            document.getElementById('vendedorProyecto').textContent = data.vendedor;
+            
+            // Actualizar precios
+            document.getElementById('precioVenta').textContent = `$${data.precioVenta} USDT`;
+            document.getElementById('precioOriginal').textContent = `Precio original: $${data.precioOriginal} USDT`;
+            document.getElementById('descuentoInfo').textContent = `-${data.descuento} desc.`;
+            
+            // Calcular ahorro
+            const ahorro = parseFloat(data.precioOriginal) - parseFloat(data.precioVenta);
+            document.getElementById('ahorroTotal').textContent = `$${ahorro} USDT`;
+            
+            // Actualizar resumen
+            const precio = parseFloat(data.precioVenta);
+            const comision = precio * 0.02; // 2% comisión
+            const gasFee = 1.0;
+            const total = precio + comision + gasFee;
+            
+            document.getElementById('resumenPrecio').textContent = `${precio.toFixed(2)} USDT`;
+            document.getElementById('resumenComision').textContent = `${comision.toFixed(2)} USDT`;
+            document.getElementById('totalPagar').textContent = `${total.toFixed(2)} USDT`;
+            
+            // Calcular saldo restante
+            const saldoActual = 2450.00;
+            const saldoRestante = saldoActual - total;
+            document.getElementById('saldoRestante').textContent = `${saldoRestante.toFixed(2)} USDT`;
+            
+            // Mostrar modal
+            document.getElementById('modalComprarParticipacion').classList.remove('hidden');
+        }
+
+        // Agregar eventos a todos los botones de comprar
+        document.querySelectorAll('.bg-white .bg-black').forEach(button => {
+            if (button.textContent.trim() === 'Comprar Participación') {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.bg-white');
+                    const nombreProyecto = card.querySelector('h3').textContent.trim();
+                    abrirModalCompra(nombreProyecto);
+                });
+            }
+        });
+        
+        document.getElementById('closeModalComprar').addEventListener('click', function() {
+            document.getElementById('modalComprarParticipacion').classList.add('hidden');
+        });
+        
+        document.getElementById('cancelComprar').addEventListener('click', function() {
+            document.getElementById('modalComprarParticipacion').classList.add('hidden');
+        });
+        
+        // Habilitar/deshabilitar botón de confirmar según checkbox
+        document.getElementById('checkboxTerminos').addEventListener('change', function() {
+            const botonConfirmar = document.getElementById('confirmarCompra');
+            botonConfirmar.disabled = !this.checked;
+        });
+        
+        // Confirmar compra
+        document.getElementById('confirmarCompra').addEventListener('click', function() {
+            alert('Compra confirmada. Procesando transacción...');
+            document.getElementById('modalComprarParticipacion').classList.add('hidden');
+        });
+        
+        // Cerrar modales al hacer click fuera
+        document.getElementById('modalVenderParticipacion').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+        
+        document.getElementById('modalComprarParticipacion').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>

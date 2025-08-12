@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Remitt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación Admin -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+                <span class="ml-2 text-sm font-bold text-gray-700">Admin Panel</span>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="#" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_Proyectos_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Gestion_de_Usuarios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Gestión de Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion_fees_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Configuración de Fees
+                    </a>
+                </li>
+                <li>
+                    <a href="Bolsas_internas_Admin.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Bolsas Internas
+                    </a>
+                </li>
+                <li>
+                    <a href="Entrega_de_Beneficios.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Entrega de Beneficios
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Bottom Admin Info -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-gray-100 p-3 rounded-lg text-center">
+                <p class="text-xs text-gray-500">Admin:</p>
+                <p class="text-sm font-medium">admin@remitt.com</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Admin -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt Admin</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden lg:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">5</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-black rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Header de la página -->
+            <div class="flex flex-col items-center text-center mb-8">
+                <!-- Imagen ilustrativa -->
+                <div class="w-24 h-24 bg-gray-300 rounded-lg flex items-center justify-center mb-6">
+                    <span class="text-gray-500 text-sm">Admin</span>
+                </div>
+                
+                <!-- Contenido centrado -->
+                <div>
+                    <h1 class="text-3xl font-bold text-black mb-2">Dashboard Administrativo</h1>
+                    <p class="text-gray-500">Panel de control y monitoreo de la plataforma Remitt</p>
+                </div>
+            </div>
+
+            <!-- Métricas Principales -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Volumen Total Plataforma -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Volumen Total Plataforma</p>
+                            <p class="text-2xl font-bold text-black">2,400,000 USDT</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Vol</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Comisiones Inversión (5%) -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Comisiones Inversión (5%)</p>
+                            <p class="text-2xl font-bold text-black">73,800 USDT</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Inv</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Comisiones P2P (3%) -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Comisiones P2P (3%)</p>
+                            <p class="text-2xl font-bold text-black">28,400 USDT</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">P2P</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Comisiones Red Afiliado -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Comisiones Red Afiliado</p>
+                            <p class="text-2xl font-bold text-black">45,700 USDT</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Red</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Gas Fees Cobrados -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Gas Fees Cobrados</p>
+                            <p class="text-2xl font-bold text-black">8,900 USDT</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Gas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Total Usuarios -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Total Usuarios</p>
+                            <p class="text-2xl font-bold text-black">2,847</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Users</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Total Proyectos -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Total Proyectos</p>
+                            <p class="text-2xl font-bold text-black">15</p>
+                            <p class="text-xs text-gray-500">12 activos • 3 en revisión</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Proj</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. NFTs Emitidos -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">NFTs Emitidos</p>
+                            <p class="text-2xl font-bold text-black">1,847</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">NFT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Total KYC -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Total KYC</p>
+                            <p class="text-2xl font-bold text-black">2,847</p>
+                            <p class="text-xs text-gray-500">2,800 aprobados • 47 pendientes</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">KYC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Comisiones de Beneficio -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Comisiones de Beneficio</p>
+                            <p class="text-2xl font-bold text-black">15,200 USDT</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">Ben</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. BNB Contrato 1 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">BNB Contrato 1</p>
+                            <p class="text-2xl font-bold text-black">450.85 BNB</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">BN1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. BNB Contrato 2 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">BNB Contrato 2</p>
+                            <p class="text-2xl font-bold text-black">327.42 BNB</p>
+                        </div>
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500 text-sm">BN2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-gray-300 py-6 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">
+                    © 2025 Remitt Admin Panel. Sistema de gestión inmobiliaria tokenizada.
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

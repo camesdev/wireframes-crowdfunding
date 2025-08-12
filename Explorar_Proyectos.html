@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Proyectos - Remitt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-700 min-h-screen flex">
+    <!-- Sidebar Navegación -->
+    <aside class="w-64 bg-white shadow-lg fixed left-0 top-0 h-full z-40 border-r border-gray-300">
+        <!-- Logo en Sidebar -->
+        <div class="p-6 border-b border-gray-300">
+            <div class="flex items-center justify-center">
+                <div class="h-8 w-8 bg-black rounded-md flex items-center justify-center">
+                    <span class="text-white font-bold">R</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navegación principal -->
+        <nav class="py-6">
+            <ul class="space-y-1">
+                <li>
+                    <a href="Dashboard.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="Explorar_Proyectos.html" class="block px-6 py-3 text-black bg-gray-100 font-medium border-r-2 border-black">
+                        Explorar Proyectos
+                    </a>
+                </li>
+                <li>
+                    <a href="Marketplace_P2P.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Marketplace P2P
+                    </a>
+                </li>
+                <li>
+                    <a href="Historial_de_Transacciones.html" class="block px-6 py-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
+                        Historial transacciones
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido Principal con offset del sidebar -->
+    <div class="flex-1 ml-64">
+        <!-- Header Simplificado -->
+        <header class="sticky top-0 z-50 bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="h-10 w-10 bg-black rounded-md flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">R</span>
+                    </div>
+                    <span class="ml-2 text-xl font-bold">Remitt</span>
+                </div>
+                
+                <!-- Panel derecho -->
+                <div class="flex items-center space-x-4">
+                     <!-- Tier del Usuario -->
+                    <div class="hidden md:flex items-center bg-black text-white px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-white rounded-full mr-2"></div>
+                        <span class="text-sm font-medium">Tier T1</span>
+                    </div>
+                    <!-- Saldos de Wallet -->
+                    <div class="hidden md:flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-md">
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDT</p>
+                            <p class="font-bold text-sm">2,450.00</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">USDC</p>
+                            <p class="font-bold text-sm">1,200.50</p>
+                        </div>
+                        <div class="w-px h-8 bg-gray-300"></div>
+                        <div class="text-center">
+                            <p class="text-xs text-gray-500">BNB</p>
+                            <p class="font-bold text-sm">0.85</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Campanita de Notificaciones -->
+                    <div class="relative">
+                        <button class="relative w-10 h-10 bg-white border border-gray-300 hover:bg-gray-100 rounded-md transition-colors flex items-center justify-center">
+                            <!-- Forma de campana con CSS -->
+                            <div class="relative transform rotate-180">
+                                <!-- Cuerpo de la campana -->
+                                <div class="w-4 h-4 bg-black rounded-b-full relative">
+                                    <!-- Top de la campana -->
+                                    <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-1 bg-black rounded-t"></div>
+                                    <!-- Badajo -->
+                                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-black rounded-full"></div>
+                                </div>
+                            </div>
+                            <!-- Indicador de notificaciones nuevas -->
+                            <div class="absolute -top-1 -right-1 w-3 h-3 bg-black rounded-full flex items-center justify-center">
+                                <span class="text-white text-xs">2</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Toggle de Idioma -->
+                    <div class="flex items-center border border-gray-300 rounded-md">
+                        <button class="px-3 py-1 bg-black text-white rounded-l-md text-sm">ES</button>
+                        <button class="px-3 py-1 text-gray-500 text-sm">EN</button>
+                    </div>
+                    
+                    <!-- Estado de Wallet Conectado -->
+                    <div class="flex items-center bg-gray-100 text-gray-700 px-3 py-2 rounded-md">
+                        <div class="w-2 h-2 bg-gray-500 rounded-full mr-2"></div>
+                        <span class="text-sm font-medium hidden lg:block">0x1234...5678</span>
+                        <span class="text-sm font-medium lg:hidden">✓</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aviso KYC en Header (versión compacta) -->
+            <div class="bg-gray-100 border-b border-gray-300 px-4 py-2">
+                <div class="container mx-auto flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-gray-500 rounded-full flex items-center justify-center mr-2">
+                            <span class="text-white text-xs">!</span>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Completa tu verificación KYC</span>
+                    </div>
+                    <button class="bg-black text-white px-4 py-1 rounded text-sm font-medium hover:bg-gray-700 transition-colors">
+                        Verificar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Header de página -->
+            <section class="mb-8 text-center">
+                <!-- Imagen decorativa -->
+                <div class="mb-6 mx-auto w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center">
+                    <div class="w-16 h-16 bg-black rounded-lg flex items-center justify-center">
+                        <div class="grid grid-cols-2 gap-1">
+                            <div class="w-3 h-3 bg-white rounded-sm"></div>
+                            <div class="w-3 h-3 bg-gray-300 rounded-sm"></div>
+                            <div class="w-3 h-3 bg-gray-300 rounded-sm"></div>
+                            <div class="w-3 h-3 bg-white rounded-sm"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="text-3xl font-bold text-black mb-4">Explorar Proyectos</h1>
+                <p class="text-gray-500 text-lg max-w-2xl mx-auto">Descubre oportunidades de inversión inmobiliaria tokenizada</p>
+            </section>
+
+            <!-- Filtros y búsqueda -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Búsqueda -->
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            placeholder="Buscar proyecto..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                        >
+                        <div class="absolute left-3 top-2.5 w-4 h-4 bg-gray-300 rounded"></div>
+                    </div>
+                    
+                    <!-- Filtro por ubicación -->
+                    <select class="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black">
+                        <option>Todas las ubicaciones</option>
+                        <option>Colombia</option>
+                        <option>México</option>
+                        <option>Perú</option>
+                        <option>Chile</option>
+                        <option>Argentina</option>
+                    </select>
+                    
+                    <!-- Filtro por tipo -->
+                    <select class="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black">
+                        <option>Todos los tipos</option>
+                        <option>Residencial</option>
+                        <option>Comercial</option>
+                        <option>Industrial</option>
+                        <option>Turístico</option>
+                    </select>
+                    
+                    <!-- Filtro por ROI -->
+                    <select class="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black">
+                        <option>Cualquier ROI</option>
+                        <option>10% - 15%</option>
+                        <option>15% - 20%</option>
+                        <option>20% - 25%</option>
+                        <option>25%+</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Grid de proyectos -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Proyecto 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Imagen del proyecto</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-black">Complejo Residencial El Retiro</h3>
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Residencial</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4">Medellín, Colombia</p>
+                        
+                        <!-- Progreso de fondeo -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Progreso de fondeo</span>
+                                <span class="text-sm font-bold text-black">73%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full" style="width: 73%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>365,000 USDT</span>
+                                <span>500,000 USDT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Métricas del proyecto -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">ROI Proyectado</p>
+                                <p class="font-bold text-black">18.5%</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Inversión Mínima</p>
+                                <p class="font-bold text-black">50 USDT</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tiempo restante y LiveCam -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">Tiempo restante</p>
+                                <p class="font-bold text-gray-700">23 días</p>
+                            </div>
+                            <div>
+                                <button class="px-3 py-1 bg-black text-white rounded text-xs font-medium hover:bg-gray-700 transition-colors">
+                                    LiveCam
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="Landing_de_proyectos_1.html">
+                                <button class="bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                Ver Detalles
+                                </button>
+                            </a>
+                            
+                            <button class="bg-black text-white py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                Invertir Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Imagen del proyecto</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-black">Centro Comercial Plaza Norte</h3>
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Comercial</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4">Ciudad de México, México</p>
+                        
+                        <!-- Progreso de fondeo -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Progreso de fondeo</span>
+                                <span class="text-sm font-bold text-black">45%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>675,000 USDT</span>
+                                <span>1,500,000 USDT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Métricas del proyecto -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">ROI Proyectado</p>
+                                <p class="font-bold text-black">22.3%</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Inversión Mínima</p>
+                                <p class="font-bold text-black">100 USDT</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tiempo restante y LiveCam -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">Tiempo restante</p>
+                                <p class="font-bold text-gray-700">45 días</p>
+                            </div>
+                            <div>
+                                <button disabled class="px-3 py-1 bg-gray-300 text-gray-500 rounded text-xs font-medium cursor-not-allowed">
+                                    LiveCam
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                           <a href="Landing_de_proyectos_1.html">
+                                <button class="bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                Ver Detalles
+                                </button>
+                            </a>
+                            <button class="bg-black text-white py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                Invertir Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Imagen del proyecto</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-black">Torres Empresariales Miraflores</h3>
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Comercial</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4">Lima, Perú</p>
+                        
+                        <!-- Progreso de fondeo -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Progreso de fondeo</span>
+                                <span class="text-sm font-bold text-black">89%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full" style="width: 89%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>890,000 USDT</span>
+                                <span>1,000,000 USDT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Métricas del proyecto -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">ROI Proyectado</p>
+                                <p class="font-bold text-black">16.8%</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Inversión Mínima</p>
+                                <p class="font-bold text-black">75 USDT</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tiempo restante y LiveCam -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">Tiempo restante</p>
+                                <p class="font-bold text-gray-700">8 días</p>
+                            </div>
+                            <div>
+                                <button class="px-3 py-1 bg-black text-white rounded text-xs font-medium hover:bg-gray-700 transition-colors">
+                                    LiveCam
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="Landing_de_proyectos_1.html">
+                                <button class="bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                Ver Detalles
+                                </button>
+                            </a>
+                            <button class="bg-black text-white py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                Invertir Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Imagen del proyecto</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-black">Resort Eco-Turístico Pacífico</h3>
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Turístico</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4">Costa Rica</p>
+                        
+                        <!-- Progreso de fondeo -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Progreso de fondeo</span>
+                                <span class="text-sm font-bold text-black">32%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full" style="width: 32%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>320,000 USDT</span>
+                                <span>1,000,000 USDT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Métricas del proyecto -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">ROI Proyectado</p>
+                                <p class="font-bold text-black">25.7%</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Inversión Mínima</p>
+                                <p class="font-bold text-black">50 USDT</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tiempo restante y LiveCam -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">Tiempo restante</p>
+                                <p class="font-bold text-gray-700">67 días</p>
+                            </div>
+                            <div>
+                                <button disabled class="px-3 py-1 bg-gray-300 text-gray-500 rounded text-xs font-medium cursor-not-allowed">
+                                    LiveCam
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                Ver Detalles
+                            </button>
+                            <button class="bg-black text-white py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                Invertir Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 5 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Imagen del proyecto</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-black">Complejo Industrial Zona Franca</h3>
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Industrial</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4">Montevideo, Uruguay</p>
+                        
+                        <!-- Progreso de fondeo -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Progreso de fondeo</span>
+                                <span class="text-sm font-bold text-black">58%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full" style="width: 58%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>435,000 USDT</span>
+                                <span>750,000 USDT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Métricas del proyecto -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">ROI Proyectado</p>
+                                <p class="font-bold text-black">19.2%</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Inversión Mínima</p>
+                                <p class="font-bold text-black">100 USDT</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tiempo restante y LiveCam -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">Tiempo restante</p>
+                                <p class="font-bold text-gray-700">34 días</p>
+                            </div>
+                            <div>
+                                <button class="px-3 py-1 bg-black text-white rounded text-xs font-medium hover:bg-gray-700 transition-colors">
+                                    LiveCam
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                Ver Detalles
+                            </button>
+                            <button class="bg-black text-white py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                Invertir Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 6 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Imagen del proyecto</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-lg font-bold text-black">Residencial Premium Las Condes</h3>
+                            <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Residencial</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-4">Santiago, Chile</p>
+                        
+                        <!-- Progreso de fondeo -->
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-700 font-medium">Progreso de fondeo</span>
+                                <span class="text-sm font-bold text-black">15%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-black h-2 rounded-full" style="width: 15%"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>150,000 USDT</span>
+                                <span>1,000,000 USDT</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Métricas del proyecto -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">ROI Proyectado</p>
+                                <p class="font-bold text-black">21.4%</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-500">Inversión Mínima</p>
+                                <p class="font-bold text-black">150 USDT</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tiempo restante y LiveCam -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <p class="text-xs text-gray-500">Tiempo restante</p>
+                                <p class="font-bold text-gray-700">89 días</p>
+                            </div>
+                            <div>
+                                <button disabled class="px-3 py-1 bg-gray-300 text-gray-500 rounded text-xs font-medium cursor-not-allowed">
+                                    LiveCam
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition-colors">
+                                Ver Detalles
+                            </button>
+                            <button class="bg-black text-white py-2 rounded-md font-medium hover:bg-gray-700 transition-colors">
+                                Invertir Ahora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Paginación -->
+            <section class="flex justify-center">
+                <div class="flex space-x-2">
+                    <button disabled class="px-3 py-1 border border-gray-300 rounded text-sm text-gray-400 cursor-not-allowed">Anterior</button>
+                    <button class="px-3 py-1 bg-black text-white rounded text-sm">1</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">2</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">3</button>
+                    <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-100">Siguiente</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Simplificado -->
+        <footer class="bg-white border-t border-gray-300 py-6 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">
+                    © 2025 Remitt. Crowdfunding inmobiliario tokenizado en BSC.
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
